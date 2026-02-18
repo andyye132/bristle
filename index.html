@@ -162,14 +162,27 @@
                 shuffle(videos);
                 stats.textContent = `${videos.length} videos`;
                 grid.innerHTML = '';
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        const video = e.target;
+                        if (e.isIntersecting) {
+                            if (!video.src) video.src = video.dataset.src;
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { rootMargin: '200px' });
+
                 videos.forEach(v => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
-                        <video src="${v.url}" autoplay muted loop playsinline preload="metadata"></video>
+                        <video data-src="${v.url}" muted loop playsinline preload="metadata"></video>
                         <div class="info"><span class="name">${v.name}</span></div>
                     `;
                     grid.appendChild(card);
+                    observer.observe(card.querySelector('video'));
                 });
             })
             .catch(err => {
