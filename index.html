@@ -150,17 +150,42 @@
             background: #1a1a1a;
             border: 1px solid #333;
             border-radius: 12px;
-            max-width: 800px;
-            width: 90vw;
+            max-width: 1100px;
+            width: 94vw;
             max-height: 90vh;
             overflow: auto;
         }
 
-        .modal video {
-            width: 100%;
+        .video-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: #000;
             border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+
+        .video-pane {
+            position: relative;
+        }
+
+        .video-pane video {
+            width: 100%;
             display: block;
             background: #000;
+        }
+
+        .video-pane .pane-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            z-index: 5;
         }
 
         .modal-body {
@@ -220,6 +245,10 @@
 
         .modal-close:hover { background: rgba(0,0,0,0.8); }
 
+        @media (max-width: 700px) {
+            .video-compare { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 900px) {
             .grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -252,7 +281,16 @@
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="modal" style="position:relative;">
             <button class="modal-close" id="modal-close">&times;</button>
-            <video id="modal-video" controls autoplay loop muted playsinline></video>
+            <div class="video-compare">
+                <div class="video-pane">
+                    <span class="pane-label">Processed</span>
+                    <video id="modal-video-processed" controls autoplay loop muted playsinline></video>
+                </div>
+                <div class="video-pane">
+                    <span class="pane-label">Original</span>
+                    <video id="modal-video-original" controls autoplay loop muted playsinline></video>
+                </div>
+            </div>
             <div class="modal-body">
                 <div class="modal-title" id="modal-title"></div>
                 <div class="meta-grid" id="modal-meta"></div>
@@ -264,7 +302,8 @@
         const grid = document.getElementById('grid');
         const stats = document.getElementById('stats');
         const overlay = document.getElementById('modal-overlay');
-        const modalVideo = document.getElementById('modal-video');
+        const vidProcessed = document.getElementById('modal-video-processed');
+        const vidOriginal = document.getElementById('modal-video-original');
         const modalTitle = document.getElementById('modal-title');
         const modalMeta = document.getElementById('modal-meta');
         let metadata = {};
@@ -281,8 +320,9 @@
             return arr;
         }
 
-        function openModal(name, url) {
-            modalVideo.src = url;
+        function openModal(name, url, originalUrl) {
+            vidProcessed.src = url;
+            vidOriginal.src = originalUrl;
             modalTitle.textContent = name;
             const m = metadata[name];
             if (m) {
@@ -308,8 +348,10 @@
 
         function closeModal() {
             overlay.classList.remove('active');
-            modalVideo.pause();
-            modalVideo.removeAttribute('src');
+            vidProcessed.pause();
+            vidOriginal.pause();
+            vidProcessed.removeAttribute('src');
+            vidOriginal.removeAttribute('src');
         }
 
         overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
@@ -358,7 +400,7 @@
                         ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
                     </div>
                 `;
-                card.addEventListener('click', () => openModal(v.name, v.url));
+                card.addEventListener('click', () => openModal(v.name, v.url, v.original_url));
                 grid.appendChild(card);
                 observer.observe(card.querySelector('video'));
             });
