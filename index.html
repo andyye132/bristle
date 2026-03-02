@@ -105,6 +105,7 @@
 
         .tag-staircase { background: #3d2b00; color: #f0b429; }
         .tag-outdoor { background: #0a3622; color: #4ade80; }
+        .tag-trimmed { background: #2b1a3d; color: #c084fc; }
 
         .empty {
             grid-column: 1 / -1;
@@ -333,6 +334,7 @@
                     ['Avg Speed', m.mean_speed_mps + ' m/s'],
                     ['Median Depth', m.median_depth_m + ' m'],
                     ['Vert. Disp.', m.vertical_displacement_m + ' m'],
+                    ['Trimmed', m.trimmed ? 'Yes' : 'No'],
                     ['Staircase', m.has_staircase ? 'Yes' : 'No'],
                     ['Outdoor', m.is_outdoor ? 'Yes' : 'No'],
                     ['Source Clip', m.source_clip],
@@ -389,6 +391,7 @@
                 const m = metadata[v.name];
                 let tagsHtml = '';
                 if (m) {
+                    if (m.trimmed) tagsHtml += '<span class="tag tag-trimmed">trimmed</span>';
                     if (m.has_staircase) tagsHtml += '<span class="tag tag-staircase">staircase</span>';
                     if (m.is_outdoor) tagsHtml += '<span class="tag tag-outdoor">outdoor</span>';
                 }
