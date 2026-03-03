@@ -34,17 +34,5 @@
     "mega_dist": "1.65",
     "mega_lin": "0.85",
     "mega_spd": "0.12"
-  },
-  {
-    "clip": "0Md74-cJlME-001",
-    "description": "Raw source clip comparison",
-    "vggt_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/0Md74-cJlME-001_vggt_play.mp4",
-    "megasam_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/0Md74-cJlME-001_megasam_play.mp4",
-    "vggt_dist": "1.15",
-    "vggt_lin": "0.29",
-    "vggt_spd": "0.07",
-    "mega_dist": "31.19",
-    "mega_lin": "0.11",
-    "mega_spd": "3.13"
   }
 ]
