@@ -1,0 +1,50 @@
+[
+  {
+    "clip": "09xQTIo911g-001",
+    "description": "Panorama, no movement",
+    "vggt_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/09xQTIo911g-001_vggt_play.mp4",
+    "megasam_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/09xQTIo911g-001_megasam_play.mp4",
+    "vggt_dist": "1.58",
+    "vggt_lin": "0.20",
+    "vggt_spd": "0.39",
+    "mega_dist": "1.93",
+    "mega_lin": "0.89",
+    "mega_spd": "1.03"
+  },
+  {
+    "clip": "08vCfePMthQ-001",
+    "description": "Walking forward",
+    "vggt_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/08vCfePMthQ-001_vggt_play.mp4",
+    "megasam_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/08vCfePMthQ-001_megasam_play.mp4",
+    "vggt_dist": "2.42",
+    "vggt_lin": "0.19",
+    "vggt_spd": "0.35",
+    "mega_dist": "0.72",
+    "mega_lin": "1.00",
+    "mega_spd": "0.15"
+  },
+  {
+    "clip": "04-T6qz2iWU-010",
+    "description": "Normal good trajectory",
+    "vggt_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/04-T6qz2iWU-010_vggt_play.mp4",
+    "megasam_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/04-T6qz2iWU-010_megasam_play.mp4",
+    "vggt_dist": "0.75",
+    "vggt_lin": "0.79",
+    "vggt_spd": "0.10",
+    "mega_dist": "1.65",
+    "mega_lin": "0.85",
+    "mega_spd": "0.12"
+  },
+  {
+    "clip": "0Md74-cJlME-001",
+    "description": "Raw source clip comparison",
+    "vggt_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/0Md74-cJlME-001_vggt_play.mp4",
+    "megasam_url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/visualizations/0Md74-cJlME-001_megasam_play.mp4",
+    "vggt_dist": "1.15",
+    "vggt_lin": "0.29",
+    "vggt_spd": "0.07",
+    "mega_dist": "31.19",
+    "mega_lin": "0.11",
+    "mega_spd": "3.13"
+  }
+]

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bristle - VGGT vs MegaSaM Comparison</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            padding: 16px 24px;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        h1 span { color: #888; font-weight: 400; }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a.active {
+            background: #3a3a5a;
+            border-color: #6b8afd;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 24px auto;
+            padding: 0 24px;
+        }
+
+        .comparison-row {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .comparison-header {
+            padding: 14px 20px;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .comparison-header .clip-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .comparison-header .clip-desc {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .comparison-videos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: #000;
+        }
+
+        .video-pane {
+            position: relative;
+            background: #000;
+        }
+
+        .video-pane video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .video-pane .pane-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .pane-label.vggt {
+            background: rgba(10, 54, 34, 0.9);
+            color: #4ade80;
+        }
+
+        .pane-label.megasam {
+            background: rgba(61, 26, 26, 0.9);
+            color: #f87171;
+        }
+
+        .comparison-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: #2a2a2a;
+            padding: 0;
+        }
+
+        .stat-col {
+            background: #1a1a1a;
+            padding: 10px 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .stat-col .stat-item {
+            display: flex;
+            gap: 4px;
+        }
+
+        .stat-col .stat-label { color: #666; }
+        .stat-col .stat-value { color: #ddd; font-weight: 500; }
+
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+
+        .loading .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid #333;
+            border-top-color: #6b8afd;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 700px) {
+            .comparison-videos { grid-template-columns: 1fr; }
+            .comparison-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Bristle <span>VGGT vs MegaSaM</span></h1>
+            <div class="nav-links">
+                <a href="index.html">Videos</a>
+                <a href="compare.html" class="active">3D Comparison</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="container">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 12px;">Loading comparisons...</p>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const BASE = 'https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main';
+
+        fetch('comparisons.json').then(r => r.json()).then(comparisons => {
+            container.innerHTML = '';
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    const video = e.target;
+                    if (e.isIntersecting) {
+                        if (!video.src) video.src = video.dataset.src;
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { rootMargin: '300px' });
+
+            comparisons.forEach(comp => {
+                const row = document.createElement('div');
+                row.className = 'comparison-row';
+                row.innerHTML = `
+                    <div class="comparison-header">
+                        <span class="clip-name">${comp.clip}</span>
+                        <span class="clip-desc">${comp.description || ''}</span>
+                    </div>
+                    <div class="comparison-videos">
+                        <div class="video-pane">
+                            <span class="pane-label vggt">VGGT</span>
+                            <video data-src="${comp.vggt_url}" muted loop playsinline controls preload="metadata"></video>
+                        </div>
+                        <div class="video-pane">
+                            <span class="pane-label megasam">MegaSaM</span>
+                            <video data-src="${comp.megasam_url}" muted loop playsinline controls preload="metadata"></video>
+                        </div>
+                    </div>
+                    <div class="comparison-stats">
+                        <div class="stat-col">
+                            <div class="stat-item"><span class="stat-label">dist:</span><span class="stat-value">${comp.vggt_dist || '?'}m</span></div>
+                            <div class="stat-item"><span class="stat-label">lin:</span><span class="stat-value">${comp.vggt_lin || '?'}</span></div>
+                            <div class="stat-item"><span class="stat-label">spd:</span><span class="stat-value">${comp.vggt_spd || '?'} m/s</span></div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-item"><span class="stat-label">dist:</span><span class="stat-value">${comp.mega_dist || '?'}m</span></div>
+                            <div class="stat-item"><span class="stat-label">lin:</span><span class="stat-value">${comp.mega_lin || '?'}</span></div>
+                            <div class="stat-item"><span class="stat-label">spd:</span><span class="stat-value">${comp.mega_spd || '?'} m/s</span></div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(row);
+                row.querySelectorAll('video').forEach(v => observer.observe(v));
+            });
+        }).catch(err => {
+            container.innerHTML = `<div class="loading" style="color:#f87171;">Failed to load comparisons.json<br><small>${err.message}</small></div>`;
+        });
+    </script>
+</body>
+</html>
