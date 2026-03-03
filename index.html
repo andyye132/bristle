@@ -269,7 +269,8 @@
                 <div class="stats" id="stats"></div>
                 <select id="filter" style="padding:6px 10px;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#ccc;font-size:0.85rem;">
                     <option value="all">All videos</option>
-                    <option value="compare">Compare clips (VGGT vs MegaSaM)</option>
+                    <option value="compare_traj">VGGT vs MegaSaM trajectories</option>
+                    <option value="compare">Compare source clips</option>
                     <option value="trajectories">Trajectory videos</option>
                 </select>
                 <a href="https://andyye.bio" style="padding:6px 14px;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#ccc;text-decoration:none;font-size:0.85rem;white-space:nowrap;">andyye.bio</a>
@@ -369,7 +370,11 @@
         const filterEl = document.getElementById('filter');
 
         function isCompareClip(v) {
-            return v.url.includes('/compare/');
+            return v.url.includes('/compare/') && !v.url.includes('/compare_traj/');
+        }
+
+        function isCompareTraj(v) {
+            return v.url.includes('/compare_traj/');
         }
 
         function renderGrid(videos) {
@@ -392,7 +397,14 @@
                 card.className = 'card';
                 const m = metadata[v.name];
                 const compare = isCompareClip(v);
+                const compareTraj = isCompareTraj(v);
                 let tagsHtml = '';
+                if (compareTraj) {
+                    const isVggt = v.name.includes('vggt');
+                    tagsHtml += isVggt
+                        ? '<span class="tag" style="background:#0a3622;color:#4ade80;">VGGT</span>'
+                        : '<span class="tag" style="background:#3d1a1a;color:#f87171;">MegaSaM</span>';
+                }
                 if (compare) tagsHtml += '<span class="tag" style="background:#1a2a4a;color:#6b8afd;">compare</span>';
                 if (m) {
                     if (m.trimmed) tagsHtml += '<span class="tag tag-trimmed">trimmed</span>';
@@ -420,7 +432,8 @@
         filterEl.addEventListener('change', () => {
             const f = filterEl.value;
             if (f === 'compare') renderGrid(allVideos.filter(isCompareClip));
-            else if (f === 'trajectories') renderGrid(allVideos.filter(v => !isCompareClip(v)));
+            else if (f === 'compare_traj') renderGrid(allVideos.filter(isCompareTraj));
+            else if (f === 'trajectories') renderGrid(allVideos.filter(v => !isCompareClip(v) && !isCompareTraj(v)));
             else renderGrid(allVideos);
         });
 
