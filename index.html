@@ -332,15 +332,16 @@
             const m = metadata[name];
             if (m) {
                 const items = [
-                    ['Distance', m.distance_m + ' m'],
+                    ['Distance', m.trajectory_length_m + ' m'],
+                    ['Horizontal', m.horizontal_distance_m + ' m'],
+                    ['Vertical', m.vertical_distance_m + ' m'],
                     ['Duration', m.duration_s + ' s'],
                     ['Frames', m.num_frames],
                     ['Avg Speed', m.mean_speed_mps + ' m/s'],
                     ['Median Depth', m.median_depth_m + ' m'],
-                    ['Vert. Disp.', m.vertical_displacement_m + ' m'],
-                    ['Trimmed', m.trimmed ? 'Yes' : 'No'],
-                    ['Staircase', m.has_staircase ? 'Yes' : 'No'],
                     ['Outdoor', m.is_outdoor ? 'Yes' : 'No'],
+                    ['Stairs', m.is_stairs ? 'Yes' : 'No'],
+                    ['People', m.is_people ? 'Yes' : 'No'],
                     ['Source Clip', m.source_clip],
                 ];
                 modalMeta.innerHTML = items.map(([label, val]) =>
@@ -405,15 +406,16 @@
                 }
                 if (compare) tagsHtml += '<span class="tag" style="background:#1a2a4a;color:#6b8afd;">compare</span>';
                 if (m) {
-                    if (m.trimmed) tagsHtml += '<span class="tag tag-trimmed">trimmed</span>';
-                    if (m.has_staircase) tagsHtml += '<span class="tag tag-staircase">staircase</span>';
+                    if (m.is_stairs) tagsHtml += '<span class="tag tag-staircase">stairs</span>';
                     if (m.is_outdoor) tagsHtml += '<span class="tag tag-outdoor">outdoor</span>';
+                    if (m.is_people) tagsHtml += '<span class="tag" style="background:#2a1a4a;color:#a78bfa;">people</span>';
+                    if (m.is_water) tagsHtml += '<span class="tag" style="background:#1a2a3a;color:#67e8f9;">water</span>';
                 }
                 card.innerHTML = `
                     <video data-src="${v.url}" muted loop playsinline preload="metadata"></video>
                     <div class="info">
                         <span class="name">${v.name}</span>
-                        ${m ? `<span style="color:#666;margin-left:6px">${m.distance_m}m &middot; ${m.duration_s}s</span>` : ''}
+                        ${m ? `<span style="color:#666;margin-left:6px">${m.trajectory_length_m}m &middot; ${m.duration_s}s</span>` : ''}
                         ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
                     </div>
                 `;

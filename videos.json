@@ -1,366 +1,802 @@
 [
   {
-    "name": "0-S5YJp2s2A-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0-S5YJp2s2A-001_traj005.mp4"
+    "name": "02Ko0iKRz5o-002_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/02Ko0iKRz5o-002_traj002.mp4"
   },
   {
-    "name": "0-S5YJp2s2A-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0-S5YJp2s2A-001_traj007.mp4"
+    "name": "06YiznMdE_Y-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/06YiznMdE_Y-008_traj001.mp4"
   },
   {
-    "name": "0-S5YJp2s2A-001_traj010",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0-S5YJp2s2A-001_traj010.mp4"
+    "name": "0QMUMuOZJpE-003_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/0QMUMuOZJpE-003_traj003.mp4"
   },
   {
-    "name": "0-S5YJp2s2A-001_traj011",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0-S5YJp2s2A-001_traj011.mp4"
-  },
-  {
-    "name": "0-S5YJp2s2A-001_traj012",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0-S5YJp2s2A-001_traj012.mp4"
-  },
-  {
-    "name": "00ccbtp2aSQ-002_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/00ccbtp2aSQ-002_traj002.mp4"
-  },
-  {
-    "name": "00ccbtp2aSQ-002_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/00ccbtp2aSQ-002_traj004.mp4"
-  },
-  {
-    "name": "00ccbtp2aSQ-002_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/00ccbtp2aSQ-002_traj006.mp4"
-  },
-  {
-    "name": "02Ko0iKRz5o-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/02Ko0iKRz5o-001_traj007.mp4"
-  },
-  {
-    "name": "02Ko0iKRz5o-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/02Ko0iKRz5o-001_traj008.mp4"
-  },
-  {
-    "name": "04-T6qz2iWU-013_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/04-T6qz2iWU-013_traj002.mp4"
-  },
-  {
-    "name": "07548zTtwns-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/07548zTtwns-001_traj003.mp4"
-  },
-  {
-    "name": "07548zTtwns-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/07548zTtwns-001_traj004.mp4"
-  },
-  {
-    "name": "07548zTtwns-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/07548zTtwns-001_traj006.mp4"
-  },
-  {
-    "name": "08_16pMi_do-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/08_16pMi_do-001_traj003.mp4"
-  },
-  {
-    "name": "08_16pMi_do-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/08_16pMi_do-001_traj005.mp4"
-  },
-  {
-    "name": "0AWUr1pgf_s-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0AWUr1pgf_s-001_traj007.mp4"
-  },
-  {
-    "name": "0HR9Oufxnb0-001_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0HR9Oufxnb0-001_traj001.mp4"
-  },
-  {
-    "name": "0HR9Oufxnb0-001_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0HR9Oufxnb0-001_traj002.mp4"
-  },
-  {
-    "name": "0HR9Oufxnb0-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0HR9Oufxnb0-001_traj003.mp4"
-  },
-  {
-    "name": "0HR9Oufxnb0-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0HR9Oufxnb0-001_traj004.mp4"
-  },
-  {
-    "name": "0HR9Oufxnb0-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0HR9Oufxnb0-001_traj006.mp4"
-  },
-  {
-    "name": "0I8Fpn1pm9w-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0I8Fpn1pm9w-001_traj004.mp4"
-  },
-  {
-    "name": "0IS0Eu2Do7U-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0IS0Eu2Do7U-001_traj005.mp4"
-  },
-  {
-    "name": "0IS0Eu2Do7U-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0IS0Eu2Do7U-001_traj006.mp4"
-  },
-  {
-    "name": "0IS0Eu2Do7U-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0IS0Eu2Do7U-001_traj007.mp4"
-  },
-  {
-    "name": "0IS0Eu2Do7U-001_traj009",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0IS0Eu2Do7U-001_traj009.mp4"
-  },
-  {
-    "name": "0Njaqg7sOUM-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Njaqg7sOUM-001_traj004.mp4"
-  },
-  {
-    "name": "0Njaqg7sOUM-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Njaqg7sOUM-001_traj007.mp4"
-  },
-  {
-    "name": "0Njaqg7sOUM-001_traj010",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Njaqg7sOUM-001_traj010.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj001.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj005.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj006.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj008.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj010",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj010.mp4"
-  },
-  {
-    "name": "0NsY3zHqQEs-001_traj014",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0NsY3zHqQEs-001_traj014.mp4"
-  },
-  {
-    "name": "0QMUMuOZJpE-005_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0QMUMuOZJpE-005_traj001.mp4"
-  },
-  {
-    "name": "0QgYMKm8AVA-002_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0QgYMKm8AVA-002_traj002.mp4"
-  },
-  {
-    "name": "0QgYMKm8AVA-002_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0QgYMKm8AVA-002_traj004.mp4"
-  },
-  {
-    "name": "0QgYMKm8AVA-002_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0QgYMKm8AVA-002_traj005.mp4"
-  },
-  {
-    "name": "0QgYMKm8AVA-002_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0QgYMKm8AVA-002_traj006.mp4"
-  },
-  {
-    "name": "0RgaOAaLROA-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0RgaOAaLROA-001_traj003.mp4"
-  },
-  {
-    "name": "0T60I22frVA-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0T60I22frVA-001_traj006.mp4"
-  },
-  {
-    "name": "0Uly10-UZvU-001_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Uly10-UZvU-001_traj002.mp4"
-  },
-  {
-    "name": "0Uly10-UZvU-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Uly10-UZvU-001_traj003.mp4"
-  },
-  {
-    "name": "0Uly10-UZvU-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Uly10-UZvU-001_traj004.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-002_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-002_traj001.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-002_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-002_traj003.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-003_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-003_traj001.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-004_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-004_traj002.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-005_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-005_traj002.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-005_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-005_traj003.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-005_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-005_traj005.mp4"
-  },
-  {
-    "name": "0W6-v3WANRU-005_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0W6-v3WANRU-005_traj007.mp4"
-  },
-  {
-    "name": "0Z_z6B4vSNY-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0Z_z6B4vSNY-001_traj003.mp4"
-  },
-  {
-    "name": "0c7xMzQGJOA-002_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c7xMzQGJOA-002_traj004.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj001.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj002.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj003.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj005.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj006.mp4"
-  },
-  {
-    "name": "0c9eV-W_E60-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0c9eV-W_E60-001_traj008.mp4"
-  },
-  {
-    "name": "0ccjzYOs_s0-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0ccjzYOs_s0-001_traj004.mp4"
-  },
-  {
-    "name": "0ccjzYOs_s0-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0ccjzYOs_s0-001_traj006.mp4"
-  },
-  {
-    "name": "0ccjzYOs_s0-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0ccjzYOs_s0-001_traj008.mp4"
-  },
-  {
-    "name": "0l2fu_lBI6o-002_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0l2fu_lBI6o-002_traj002.mp4"
-  },
-  {
-    "name": "0l2fu_lBI6o-002_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0l2fu_lBI6o-002_traj003.mp4"
-  },
-  {
-    "name": "0l2fu_lBI6o-002_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0l2fu_lBI6o-002_traj005.mp4"
-  },
-  {
-    "name": "0l2fu_lBI6o-002_traj009",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0l2fu_lBI6o-002_traj009.mp4"
-  },
-  {
-    "name": "0l2fu_lBI6o-002_traj010",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0l2fu_lBI6o-002_traj010.mp4"
-  },
-  {
-    "name": "0n6LZYE3qGc-001_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0n6LZYE3qGc-001_traj002.mp4"
-  },
-  {
-    "name": "0n6LZYE3qGc-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0n6LZYE3qGc-001_traj003.mp4"
-  },
-  {
-    "name": "0n6LZYE3qGc-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0n6LZYE3qGc-001_traj004.mp4"
-  },
-  {
-    "name": "0n6LZYE3qGc-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0n6LZYE3qGc-001_traj005.mp4"
-  },
-  {
-    "name": "0notrALo1yI-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0notrALo1yI-001_traj004.mp4"
-  },
-  {
-    "name": "0notrALo1yI-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0notrALo1yI-001_traj005.mp4"
-  },
-  {
-    "name": "0notrALo1yI-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0notrALo1yI-001_traj006.mp4"
-  },
-  {
-    "name": "0notrALo1yI-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0notrALo1yI-001_traj008.mp4"
+    "name": "0RgaOAaLROA-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/0RgaOAaLROA-001_traj001.mp4"
   },
   {
     "name": "0notrALo1yI-005_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0notrALo1yI-005_traj001.mp4"
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/0notrALo1yI-005_traj001.mp4"
   },
   {
-    "name": "0poLJrLqI1c-009_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0poLJrLqI1c-009_traj002.mp4"
+    "name": "1D5Y_eiMYl8-009_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/1D5Y_eiMYl8-009_traj001.mp4"
   },
   {
-    "name": "0poLJrLqI1c-017_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0poLJrLqI1c-017_traj002.mp4"
+    "name": "1SUwhiQvL0w-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/1SUwhiQvL0w-004_traj001.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj001.mp4"
+    "name": "1g5hF1RzOYI-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/1g5hF1RzOYI-004_traj001.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj002",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj002.mp4"
+    "name": "1jv1HLaYE_g-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/1jv1HLaYE_g-001_traj003.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj003",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj003.mp4"
+    "name": "2052aFTtyEs-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2052aFTtyEs-001_traj001.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj005",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj005.mp4"
+    "name": "29lJEzMnLjk-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/29lJEzMnLjk-011_traj001.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj006",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj006.mp4"
+    "name": "2Cyog3J5dS8-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2Cyog3J5dS8-001_traj001.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj007",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj007.mp4"
+    "name": "2Cyog3J5dS8-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2Cyog3J5dS8-001_traj003.mp4"
   },
   {
-    "name": "0qZVnJorI_o-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qZVnJorI_o-001_traj008.mp4"
+    "name": "2ssv5UkS_iw-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2ssv5UkS_iw-002_traj001.mp4"
   },
   {
-    "name": "0qoUTe7bPTI-012_traj001",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0qoUTe7bPTI-012_traj001.mp4"
+    "name": "2w-S935917w-018_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2w-S935917w-018_traj001.mp4"
   },
   {
-    "name": "0rbaeGo7R4k-001_traj004",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0rbaeGo7R4k-001_traj004.mp4"
+    "name": "2ypR78mkg54-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/2ypR78mkg54-001_traj005.mp4"
   },
   {
-    "name": "0rbaeGo7R4k-001_traj008",
-    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/originals/0rbaeGo7R4k-001_traj008.mp4"
+    "name": "33h8QKVktKE-010_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/33h8QKVktKE-010_traj001.mp4"
+  },
+  {
+    "name": "3U52mpSVYwo-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/3U52mpSVYwo-002_traj001.mp4"
+  },
+  {
+    "name": "3gsDzWvDc_k-002_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/3gsDzWvDc_k-002_traj007.mp4"
+  },
+  {
+    "name": "3q94VjaFJYA-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/3q94VjaFJYA-001_traj001.mp4"
+  },
+  {
+    "name": "3tmC3j85fu0-017_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/3tmC3j85fu0-017_traj001.mp4"
+  },
+  {
+    "name": "3tpI2SLW-vw-013_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/3tpI2SLW-vw-013_traj001.mp4"
+  },
+  {
+    "name": "43tBrOV1-sY-005_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/43tBrOV1-sY-005_traj002.mp4"
+  },
+  {
+    "name": "43tBrOV1-sY-010_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/43tBrOV1-sY-010_traj001.mp4"
+  },
+  {
+    "name": "4Co-OVpw4TY-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4Co-OVpw4TY-001_traj003.mp4"
+  },
+  {
+    "name": "4G8XIhcFO88-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4G8XIhcFO88-001_traj001.mp4"
+  },
+  {
+    "name": "4OOptBXpTPE-006_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4OOptBXpTPE-006_traj001.mp4"
+  },
+  {
+    "name": "4OOptBXpTPE-009_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4OOptBXpTPE-009_traj001.mp4"
+  },
+  {
+    "name": "4SgQ0T958C4-007_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4SgQ0T958C4-007_traj004.mp4"
+  },
+  {
+    "name": "4aLDbp8EqME-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4aLDbp8EqME-001_traj001.mp4"
+  },
+  {
+    "name": "4aLDbp8EqME-012_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4aLDbp8EqME-012_traj001.mp4"
+  },
+  {
+    "name": "4l90WJiGu38-005_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4l90WJiGu38-005_traj001.mp4"
+  },
+  {
+    "name": "4yOkqyWahts-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/4yOkqyWahts-001_traj002.mp4"
+  },
+  {
+    "name": "50Sv-7zmafA-015_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/50Sv-7zmafA-015_traj001.mp4"
+  },
+  {
+    "name": "5apVOXiOKIM-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/5apVOXiOKIM-001_traj001.mp4"
+  },
+  {
+    "name": "5t4mW4wCH58-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/5t4mW4wCH58-001_traj002.mp4"
+  },
+  {
+    "name": "61dNVknJdM8-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/61dNVknJdM8-001_traj001.mp4"
+  },
+  {
+    "name": "6FcXp5IQUIA-004_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6FcXp5IQUIA-004_traj002.mp4"
+  },
+  {
+    "name": "6LtEptuUjh0-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6LtEptuUjh0-001_traj003.mp4"
+  },
+  {
+    "name": "6OohDvleybY-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6OohDvleybY-001_traj002.mp4"
+  },
+  {
+    "name": "6TXMjaZl_38-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6TXMjaZl_38-007_traj001.mp4"
+  },
+  {
+    "name": "6TXMjaZl_38-010_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6TXMjaZl_38-010_traj002.mp4"
+  },
+  {
+    "name": "6U3SHG2HTsU-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6U3SHG2HTsU-008_traj001.mp4"
+  },
+  {
+    "name": "6_H8VA1tsEU-002_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6_H8VA1tsEU-002_traj002.mp4"
+  },
+  {
+    "name": "6ueGegQ0W14-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/6ueGegQ0W14-008_traj001.mp4"
+  },
+  {
+    "name": "729x0zjr75U-003_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/729x0zjr75U-003_traj001.mp4"
+  },
+  {
+    "name": "729x0zjr75U-005_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/729x0zjr75U-005_traj001.mp4"
+  },
+  {
+    "name": "7JcmmjIWYRc-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7JcmmjIWYRc-007_traj001.mp4"
+  },
+  {
+    "name": "7hXnJFmTqnk-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7hXnJFmTqnk-001_traj002.mp4"
+  },
+  {
+    "name": "7nb7EX0Bslg-014_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7nb7EX0Bslg-014_traj001.mp4"
+  },
+  {
+    "name": "7v8nYFUUi5c-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7v8nYFUUi5c-001_traj001.mp4"
+  },
+  {
+    "name": "7v8nYFUUi5c-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7v8nYFUUi5c-001_traj002.mp4"
+  },
+  {
+    "name": "7v8nYFUUi5c-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7v8nYFUUi5c-001_traj005.mp4"
+  },
+  {
+    "name": "7yl5KVOIHR0-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/7yl5KVOIHR0-001_traj001.mp4"
+  },
+  {
+    "name": "8V1K5RXL2qs-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/8V1K5RXL2qs-001_traj001.mp4"
+  },
+  {
+    "name": "8moLYLJAxQ4-035_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/8moLYLJAxQ4-035_traj001.mp4"
+  },
+  {
+    "name": "8qSHdz8uc-Y-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/8qSHdz8uc-Y-008_traj001.mp4"
+  },
+  {
+    "name": "8zO36b-NKUc-007_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/8zO36b-NKUc-007_traj002.mp4"
+  },
+  {
+    "name": "9kBN4EqRDxY-003_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/9kBN4EqRDxY-003_traj004.mp4"
+  },
+  {
+    "name": "AIRgO6npEks-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/AIRgO6npEks-001_traj001.mp4"
+  },
+  {
+    "name": "AN-1ZWft3FU-028_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/AN-1ZWft3FU-028_traj001.mp4"
+  },
+  {
+    "name": "AOyb3zmH0NM-028_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/AOyb3zmH0NM-028_traj001.mp4"
+  },
+  {
+    "name": "AWAPIrH7zKg-013_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/AWAPIrH7zKg-013_traj001.mp4"
+  },
+  {
+    "name": "BDiFphZzVzI-013_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BDiFphZzVzI-013_traj001.mp4"
+  },
+  {
+    "name": "BVuWm0vgg1M-012_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BVuWm0vgg1M-012_traj001.mp4"
+  },
+  {
+    "name": "Bi2XqaZP7Lg-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Bi2XqaZP7Lg-001_traj002.mp4"
+  },
+  {
+    "name": "BlDID9Mmnps-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BlDID9Mmnps-004_traj001.mp4"
+  },
+  {
+    "name": "BqtrSJJKtCg-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BqtrSJJKtCg-001_traj003.mp4"
+  },
+  {
+    "name": "BsyOaqeEji8-010_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BsyOaqeEji8-010_traj001.mp4"
+  },
+  {
+    "name": "BvsPEiCRqMk-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BvsPEiCRqMk-011_traj001.mp4"
+  },
+  {
+    "name": "BzD3Cqxpew0-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/BzD3Cqxpew0-001_traj005.mp4"
+  },
+  {
+    "name": "CAaoKfoeeoM-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/CAaoKfoeeoM-001_traj003.mp4"
+  },
+  {
+    "name": "CWrPlBM1Y8Q-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/CWrPlBM1Y8Q-002_traj001.mp4"
+  },
+  {
+    "name": "CxTx7iAQJbs-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/CxTx7iAQJbs-008_traj001.mp4"
+  },
+  {
+    "name": "D5TA-h5Y5xc-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/D5TA-h5Y5xc-004_traj001.mp4"
+  },
+  {
+    "name": "Dn2JwC3JPwA-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Dn2JwC3JPwA-008_traj001.mp4"
+  },
+  {
+    "name": "Dn2JwC3JPwA-018_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Dn2JwC3JPwA-018_traj001.mp4"
+  },
+  {
+    "name": "E4HIzkaUjk0-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/E4HIzkaUjk0-001_traj003.mp4"
+  },
+  {
+    "name": "E6FoqoR1IRg-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/E6FoqoR1IRg-001_traj001.mp4"
+  },
+  {
+    "name": "EUCxMXynEmE-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/EUCxMXynEmE-001_traj002.mp4"
+  },
+  {
+    "name": "EUCxMXynEmE-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/EUCxMXynEmE-001_traj003.mp4"
+  },
+  {
+    "name": "EcjLH0PGGSQ-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/EcjLH0PGGSQ-001_traj001.mp4"
+  },
+  {
+    "name": "F7PSO9PmmTQ-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/F7PSO9PmmTQ-001_traj002.mp4"
+  },
+  {
+    "name": "FCB9gqr-trY-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FCB9gqr-trY-001_traj004.mp4"
+  },
+  {
+    "name": "FNRnrt745fg-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FNRnrt745fg-004_traj001.mp4"
+  },
+  {
+    "name": "FNwLgAD5nfM-030_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FNwLgAD5nfM-030_traj001.mp4"
+  },
+  {
+    "name": "FR1DMbRZpfc-004_traj008",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FR1DMbRZpfc-004_traj008.mp4"
+  },
+  {
+    "name": "FYN5Ht5SBDo-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FYN5Ht5SBDo-001_traj001.mp4"
+  },
+  {
+    "name": "Fquwl46Uspo-079_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Fquwl46Uspo-079_traj001.mp4"
+  },
+  {
+    "name": "Fyt_a_lx8B8-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Fyt_a_lx8B8-004_traj001.mp4"
+  },
+  {
+    "name": "Fyt_a_lx8B8-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Fyt_a_lx8B8-007_traj001.mp4"
+  },
+  {
+    "name": "G10r0D33kbg-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/G10r0D33kbg-011_traj001.mp4"
+  },
+  {
+    "name": "G3yMQ4d7sEE-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/G3yMQ4d7sEE-008_traj001.mp4"
+  },
+  {
+    "name": "GPpQD0wChQw-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/GPpQD0wChQw-007_traj001.mp4"
+  },
+  {
+    "name": "GcjmjCL-nt4-006_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/GcjmjCL-nt4-006_traj004.mp4"
+  },
+  {
+    "name": "GtJMaQNO98I-001_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/GtJMaQNO98I-001_traj007.mp4"
+  },
+  {
+    "name": "Gv5KR-8wOzQ-001_traj008",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Gv5KR-8wOzQ-001_traj008.mp4"
+  },
+  {
+    "name": "Gv5KR-8wOzQ-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Gv5KR-8wOzQ-001_traj009.mp4"
+  },
+  {
+    "name": "GxxfSid73ug-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/GxxfSid73ug-001_traj004.mp4"
+  },
+  {
+    "name": "H3Eb1t81wQ8-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/H3Eb1t81wQ8-001_traj005.mp4"
+  },
+  {
+    "name": "H3Eb1t81wQ8-001_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/H3Eb1t81wQ8-001_traj007.mp4"
+  },
+  {
+    "name": "H9iQjBetHoQ-003_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/H9iQjBetHoQ-003_traj006.mp4"
+  },
+  {
+    "name": "HCstSrmiCfo-005_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/HCstSrmiCfo-005_traj001.mp4"
+  },
+  {
+    "name": "HcYNpWpwWT8-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/HcYNpWpwWT8-004_traj001.mp4"
+  },
+  {
+    "name": "I3eSgFgNnG8-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/I3eSgFgNnG8-002_traj001.mp4"
+  },
+  {
+    "name": "IEPCOLb2i88-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/IEPCOLb2i88-011_traj001.mp4"
+  },
+  {
+    "name": "IEPCOLb2i88-012_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/IEPCOLb2i88-012_traj001.mp4"
+  },
+  {
+    "name": "IFjjULYlhf4-031_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/IFjjULYlhf4-031_traj001.mp4"
+  },
+  {
+    "name": "IILB9ozphO4-017_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/IILB9ozphO4-017_traj001.mp4"
+  },
+  {
+    "name": "IOCyVFpZJG0-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/IOCyVFpZJG0-001_traj001.mp4"
+  },
+  {
+    "name": "Idc070VvRzo-002_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Idc070VvRzo-002_traj002.mp4"
+  },
+  {
+    "name": "ItTPbOh71cA-005_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/ItTPbOh71cA-005_traj002.mp4"
+  },
+  {
+    "name": "JkF0xb4dkt4-027_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/JkF0xb4dkt4-027_traj001.mp4"
+  },
+  {
+    "name": "JnTP2EE6fNA-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/JnTP2EE6fNA-011_traj001.mp4"
+  },
+  {
+    "name": "Jr_2xPDb9nc-004_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Jr_2xPDb9nc-004_traj004.mp4"
+  },
+  {
+    "name": "Jr_2xPDb9nc-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Jr_2xPDb9nc-008_traj001.mp4"
+  },
+  {
+    "name": "K-WyjqtupbA-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/K-WyjqtupbA-001_traj001.mp4"
+  },
+  {
+    "name": "K6Z2xI-V_3A-005_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/K6Z2xI-V_3A-005_traj005.mp4"
+  },
+  {
+    "name": "K6Z2xI-V_3A-005_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/K6Z2xI-V_3A-005_traj007.mp4"
+  },
+  {
+    "name": "KC4c4drSAIg-010_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/KC4c4drSAIg-010_traj001.mp4"
+  },
+  {
+    "name": "KSTG-p2UqBM-002_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/KSTG-p2UqBM-002_traj002.mp4"
+  },
+  {
+    "name": "KiYcM_oE3eE-016_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/KiYcM_oE3eE-016_traj001.mp4"
+  },
+  {
+    "name": "Ky_6PjKnwwQ-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Ky_6PjKnwwQ-001_traj001.mp4"
+  },
+  {
+    "name": "Ky_6PjKnwwQ-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Ky_6PjKnwwQ-001_traj002.mp4"
+  },
+  {
+    "name": "Ky_6PjKnwwQ-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Ky_6PjKnwwQ-001_traj003.mp4"
+  },
+  {
+    "name": "Ky_eOrYirsY-034_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Ky_eOrYirsY-034_traj001.mp4"
+  },
+  {
+    "name": "Mfg1BsGEthI-003_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Mfg1BsGEthI-003_traj001.mp4"
+  },
+  {
+    "name": "MqYBx23xrHc-018_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/MqYBx23xrHc-018_traj001.mp4"
+  },
+  {
+    "name": "N0MPzNy6Pw4-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/N0MPzNy6Pw4-001_traj001.mp4"
+  },
+  {
+    "name": "NGB8T36gbfI-004_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/NGB8T36gbfI-004_traj001.mp4"
+  },
+  {
+    "name": "O8ulEb4pjuk-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/O8ulEb4pjuk-002_traj001.mp4"
+  },
+  {
+    "name": "Og0n8l1NglE-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Og0n8l1NglE-001_traj005.mp4"
+  },
+  {
+    "name": "PRLWlvNv9g0-003_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/PRLWlvNv9g0-003_traj001.mp4"
+  },
+  {
+    "name": "PRLWlvNv9g0-010_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/PRLWlvNv9g0-010_traj001.mp4"
+  },
+  {
+    "name": "QL2AN5talR8-008_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QL2AN5talR8-008_traj001.mp4"
+  },
+  {
+    "name": "QL2AN5talR8-008_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QL2AN5talR8-008_traj002.mp4"
+  },
+  {
+    "name": "QXPW2Tq--40-002_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QXPW2Tq--40-002_traj006.mp4"
+  },
+  {
+    "name": "QelrDD-HBGY-001_traj005",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QelrDD-HBGY-001_traj005.mp4"
+  },
+  {
+    "name": "QfW53fCxk98-001_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QfW53fCxk98-001_traj006.mp4"
+  },
+  {
+    "name": "QrpNJP_I6PM-002_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QrpNJP_I6PM-002_traj003.mp4"
+  },
+  {
+    "name": "QxyjBGJ76y4-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/QxyjBGJ76y4-001_traj002.mp4"
+  },
+  {
+    "name": "R0ddCHKjbE0-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/R0ddCHKjbE0-002_traj001.mp4"
+  },
+  {
+    "name": "RQbL6RhyF78-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/RQbL6RhyF78-001_traj001.mp4"
+  },
+  {
+    "name": "Rm1A0_1rS9M-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Rm1A0_1rS9M-002_traj001.mp4"
+  },
+  {
+    "name": "RsEi1rNQ5iE-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/RsEi1rNQ5iE-001_traj002.mp4"
+  },
+  {
+    "name": "Ru59j6RlvgY-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Ru59j6RlvgY-001_traj002.mp4"
+  },
+  {
+    "name": "S-B3hc2Jsfg-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/S-B3hc2Jsfg-001_traj001.mp4"
+  },
+  {
+    "name": "S-B3hc2Jsfg-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/S-B3hc2Jsfg-001_traj004.mp4"
+  },
+  {
+    "name": "S3ikhQN0GcU-006_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/S3ikhQN0GcU-006_traj001.mp4"
+  },
+  {
+    "name": "S8-U6We9szI-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/S8-U6We9szI-001_traj009.mp4"
+  },
+  {
+    "name": "SHUyssdKHVo-001_traj008",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/SHUyssdKHVo-001_traj008.mp4"
+  },
+  {
+    "name": "Sag9bzyatCE-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Sag9bzyatCE-007_traj001.mp4"
+  },
+  {
+    "name": "Sf-zwM5tkfU-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/Sf-zwM5tkfU-001_traj002.mp4"
+  },
+  {
+    "name": "_ca03xP_KUU-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/_ca03xP_KUU-001_traj001.mp4"
+  },
+  {
+    "name": "_m-yUstCjXw-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/_m-yUstCjXw-001_traj002.mp4"
+  },
+  {
+    "name": "_s9ftAG8vxI-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/_s9ftAG8vxI-001_traj003.mp4"
+  },
+  {
+    "name": "_s9ftAG8vxI-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/_s9ftAG8vxI-001_traj004.mp4"
+  },
+  {
+    "name": "a2jMnZbZFKY-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/a2jMnZbZFKY-001_traj009.mp4"
+  },
+  {
+    "name": "aBIIY_8cV8s-001_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/aBIIY_8cV8s-001_traj007.mp4"
+  },
+  {
+    "name": "crtFo9YfCrM-003_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/crtFo9YfCrM-003_traj001.mp4"
+  },
+  {
+    "name": "dw4IO8ptSoo-005_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/dw4IO8ptSoo-005_traj001.mp4"
+  },
+  {
+    "name": "dzgTwSqYMGc-002_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/dzgTwSqYMGc-002_traj001.mp4"
+  },
+  {
+    "name": "e9pCg0mJNic-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/e9pCg0mJNic-001_traj002.mp4"
+  },
+  {
+    "name": "eut4XK2ch2w-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/eut4XK2ch2w-001_traj001.mp4"
+  },
+  {
+    "name": "gXvQMMtKpEc-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/gXvQMMtKpEc-007_traj001.mp4"
+  },
+  {
+    "name": "gaT6kmQtJKY-024_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/gaT6kmQtJKY-024_traj001.mp4"
+  },
+  {
+    "name": "iJJxcv7ItH8-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/iJJxcv7ItH8-001_traj002.mp4"
+  },
+  {
+    "name": "j-UK479s5Rw-011_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/j-UK479s5Rw-011_traj001.mp4"
+  },
+  {
+    "name": "j6YvyRE_0oI-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/j6YvyRE_0oI-001_traj001.mp4"
+  },
+  {
+    "name": "j6YvyRE_0oI-003_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/j6YvyRE_0oI-003_traj001.mp4"
+  },
+  {
+    "name": "j8LoNjdo07Q-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/j8LoNjdo07Q-001_traj001.mp4"
+  },
+  {
+    "name": "j9CwUz-PWas-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/j9CwUz-PWas-001_traj003.mp4"
+  },
+  {
+    "name": "jkWldQeUS9Q-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/jkWldQeUS9Q-001_traj004.mp4"
+  },
+  {
+    "name": "k5SRV3tv5AY-006_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/k5SRV3tv5AY-006_traj002.mp4"
+  },
+  {
+    "name": "kLXx_8nzF4M-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/kLXx_8nzF4M-001_traj003.mp4"
+  },
+  {
+    "name": "kSTlnK7YGY0-001_traj014",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/kSTlnK7YGY0-001_traj014.mp4"
+  },
+  {
+    "name": "klRgYa2Qgio-001_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/klRgYa2Qgio-001_traj007.mp4"
+  },
+  {
+    "name": "lv8tcBmTZRg-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/lv8tcBmTZRg-001_traj002.mp4"
+  },
+  {
+    "name": "lv8tcBmTZRg-001_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/lv8tcBmTZRg-001_traj006.mp4"
+  },
+  {
+    "name": "mD59hrkThbg-001_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mD59hrkThbg-001_traj006.mp4"
+  },
+  {
+    "name": "mE4RlYvCk0I-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mE4RlYvCk0I-001_traj002.mp4"
+  },
+  {
+    "name": "mE4RlYvCk0I-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mE4RlYvCk0I-001_traj004.mp4"
+  },
+  {
+    "name": "mYvJO6C9uC0-001_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mYvJO6C9uC0-001_traj007.mp4"
+  },
+  {
+    "name": "me-3wrhG25w-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/me-3wrhG25w-001_traj002.mp4"
+  },
+  {
+    "name": "mx4hUlb1qdU-004_traj007",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mx4hUlb1qdU-004_traj007.mp4"
+  },
+  {
+    "name": "mx4hUlb1qdU-004_traj010",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/mx4hUlb1qdU-004_traj010.mp4"
+  },
+  {
+    "name": "nFBt7VZkPTc-006_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/nFBt7VZkPTc-006_traj001.mp4"
+  },
+  {
+    "name": "nIKnDOh4RFg-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/nIKnDOh4RFg-001_traj009.mp4"
+  },
+  {
+    "name": "nNKpnAeMztY-001_traj004",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/nNKpnAeMztY-001_traj004.mp4"
+  },
+  {
+    "name": "nNKpnAeMztY-001_traj006",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/nNKpnAeMztY-001_traj006.mp4"
+  },
+  {
+    "name": "nbrs8l_TS1g-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/nbrs8l_TS1g-001_traj003.mp4"
+  },
+  {
+    "name": "qnKIWTqrWmQ-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/qnKIWTqrWmQ-001_traj003.mp4"
+  },
+  {
+    "name": "qwypBqLCL-o-024_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/qwypBqLCL-o-024_traj001.mp4"
+  },
+  {
+    "name": "rWTTIvDAW5M-001_traj003",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/rWTTIvDAW5M-001_traj003.mp4"
+  },
+  {
+    "name": "rj5AU43hpIk-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/rj5AU43hpIk-001_traj001.mp4"
+  },
+  {
+    "name": "ruXqunu4GP4-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/ruXqunu4GP4-001_traj009.mp4"
+  },
+  {
+    "name": "rvWMmAgob1E-001_traj009",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/rvWMmAgob1E-001_traj009.mp4"
+  },
+  {
+    "name": "s9XuG5EVI6g-001_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/s9XuG5EVI6g-001_traj001.mp4"
+  },
+  {
+    "name": "sE_Hc6Vv9mw-001_traj002",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/sE_Hc6Vv9mw-001_traj002.mp4"
+  },
+  {
+    "name": "ushJlFYvNTo-007_traj001",
+    "url": "https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/ushJlFYvNTo-007_traj001.mp4"
   }
 ]
