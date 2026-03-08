@@ -332,9 +332,10 @@
             const m = metadata[name];
             if (m) {
                 const items = [
-                    ['Distance', m.trajectory_length_m + ' m'],
-                    ['Horizontal', m.horizontal_distance_m + ' m'],
-                    ['Vertical', m.vertical_distance_m + ' m'],
+                    ['Displacement', m.displacement_m + ' m'],
+                    ['Horiz. Disp.', m.displacement_horizontal_m + ' m'],
+                    ['Vert. Disp.', m.displacement_vertical_m + ' m'],
+                    ['Path Length', m.trajectory_length_m + ' m'],
                     ['Duration', m.duration_s + ' s'],
                     ['Frames', m.num_frames],
                     ['Avg Speed', m.mean_speed_mps + ' m/s'],
@@ -415,7 +416,7 @@
                     <video data-src="${v.url}" muted loop playsinline preload="metadata"></video>
                     <div class="info">
                         <span class="name">${v.name}</span>
-                        ${m ? `<span style="color:#666;margin-left:6px">${m.trajectory_length_m}m &middot; ${m.duration_s}s</span>` : ''}
+                        ${m ? `<span style="color:#666;margin-left:6px">${m.displacement_m}m &middot; ${m.duration_s}s</span>` : ''}
                         ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
                     </div>
                 `;
