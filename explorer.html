@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bristle - Trajectory Explorer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; }
+
+    header { background: #161616; border-bottom: 1px solid #2a2a2a; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+    header h1 { font-size: 1.3rem; font-weight: 600; }
+    header h1 span { color: #666; font-weight: 400; font-size: 0.9rem; margin-left: 8px; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-stats { font-size: 0.8rem; color: #666; }
+    .back-link { font-size: 0.8rem; color: #6b8afd; text-decoration: none; padding: 4px 10px; border: 1px solid #333; border-radius: 4px; }
+    .back-link:hover { border-color: #6b8afd; }
+
+    .filmstrip { background: #111; border-bottom: 1px solid #2a2a2a; padding: 12px 16px; overflow-x: auto; white-space: nowrap; display: flex; gap: 8px; }
+    .filmstrip::-webkit-scrollbar { height: 6px; }
+    .filmstrip::-webkit-scrollbar-track { background: #111; }
+    .filmstrip::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+    .thumb { flex-shrink: 0; width: 160px; border-radius: 6px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color 0.15s, transform 0.15s; background: #1a1a1a; }
+    .thumb:hover { border-color: #444; transform: translateY(-2px); }
+    .thumb.active { border-color: #6b8afd; }
+    .thumb video { width: 100%; height: 90px; object-fit: cover; display: block; pointer-events: none; background: #000; }
+    .thumb .thumb-label { padding: 4px 6px; font-size: 0.65rem; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .thumb .thumb-label .dist { color: #6b8afd; }
+
+    .main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 180px); }
+
+    .pane { position: relative; background: #0a0a0a; overflow: hidden; }
+    .pane-label { position: absolute; top: 10px; left: 12px; background: rgba(0,0,0,0.75); color: #fff; font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 4px; z-index: 10; letter-spacing: 0.5px; text-transform: uppercase; }
+
+    #video-pane video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+    #viewer-pane canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+
+    .controls-bar { position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; gap: 10px; align-items: center; z-index: 10; }
+    .controls-bar label { font-size: 0.7rem; color: #aaa; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 4px; }
+    .controls-bar input[type="checkbox"] { accent-color: #6b8afd; }
+    .controls-bar input[type="range"] { width: 60px; accent-color: #6b8afd; }
+
+    .meta-bar { background: #161616; border-top: 1px solid #2a2a2a; padding: 14px 24px; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+    .meta-card { background: #1e1e1e; border-radius: 6px; padding: 10px 14px; min-width: 120px; }
+    .meta-card .label { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .meta-card .value { font-size: 0.95rem; font-weight: 500; color: #ddd; }
+    .meta-card .value.highlight { color: #6b8afd; }
+
+    #loading-3d { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #666; font-size: 0.85rem; z-index: 5; }
+
+    @media (max-width: 800px) {
+      .main { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+      .filmstrip { gap: 6px; }
+      .thumb { width: 120px; }
+      .thumb video { height: 68px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bristle<span>Trajectory Explorer</span></h1>
+    <div class="header-right">
+      <div class="header-stats" id="header-stats"></div>
+      <a href="index.html" class="back-link">Back to Hub</a>
+    </div>
+  </header>
+
+  <div class="filmstrip" id="filmstrip"></div>
+
+  <div class="main">
+    <div class="pane" id="viewer-pane">
+      <span class="pane-label">3D Trajectory</span>
+      <canvas id="megaview"></canvas>
+      <div id="loading-3d">Select a trajectory</div>
+      <div class="controls-bar">
+        <label><input type="checkbox" id="cb-frusta" checked> Frusta</label>
+        <label><input type="checkbox" id="cb-points"> Points</label>
+        <label>Size <input type="range" id="sl-frustum" min="5" max="80" value="25"></label>
+      </div>
+    </div>
+    <div class="pane" id="video-pane">
+      <span class="pane-label">Video</span>
+      <video id="main-video" controls autoplay loop muted playsinline></video>
+    </div>
+  </div>
+
+  <div class="meta-bar" id="meta-bar"></div>
+
+  <script src="viewer.js"></script>
+  <script>
+    let manifest = [];
+    let activeIdx = -1;
+    const filmstrip = document.getElementById('filmstrip');
+    const mainVideo = document.getElementById('main-video');
+    const metaBar = document.getElementById('meta-bar');
+    const headerStats = document.getElementById('header-stats');
+    const loadingEl = document.getElementById('loading-3d');
+
+    document.getElementById('cb-frusta').addEventListener('change', function() { state.show_all_frusta = this.checked; dirty = true; });
+    document.getElementById('cb-points').addEventListener('change', function() { state.show_all_points = this.checked; dirty = true; });
+    document.getElementById('sl-frustum').addEventListener('input', function() { state.frustum_size = this.value / 100; dirty = true; });
+
+    function fmtNum(n, d=2) { return n != null ? Number(n).toFixed(d) : '-'; }
+
+    function renderMeta(m) {
+      if (!m) { metaBar.innerHTML = ''; return; }
+      const items = [
+        ['Path Length', fmtNum(m.trajectory_length_m, 3) + ' m', true],
+        ['Displacement', fmtNum(m.displacement_m, 3) + ' m', false],
+        ['Horiz Dist', fmtNum(m.horizontal_distance_m, 3) + ' m', false],
+        ['Vert Dist', fmtNum(m.vertical_distance_m, 3) + ' m', false],
+        ['Duration', fmtNum(m.duration_s, 1) + ' s', false],
+        ['Frames', m.num_frames, false],
+        ['Avg Speed', fmtNum(m.mean_speed_mps, 3) + ' m/s', true],
+        ['Max Speed', fmtNum(m.max_speed_mps, 3) + ' m/s', false],
+        ['Speed CV', fmtNum(m.speed_cv, 3), false],
+        ['Med. Depth', fmtNum(m.median_depth_m, 2) + ' m', false],
+        ['Frame Step', m.frame_step, false],
+        ['Source', m.source_clip || '-', false],
+      ];
+      metaBar.innerHTML = items.map(([label, val, hl]) =>
+        `<div class="meta-card"><div class="label">${label}</div><div class="value${hl ? ' highlight' : ''}">${val}</div></div>`
+      ).join('');
+    }
+
+    function selectTrajectory(idx) {
+      if (idx === activeIdx) return;
+      activeIdx = idx;
+      const item = manifest[idx];
+
+      document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+
+      mainVideo.src = item.video;
+      mainVideo.play();
+
+      loadingEl.textContent = 'Loading 3D...';
+      loadingEl.style.display = 'block';
+      loadScene(item.packed).then(() => {
+        loadingEl.style.display = 'none';
+        if (item.goal_position) data.goal_position = item.goal_position;
+        if (item.floor_point) data.floor_point = item.floor_point;
+        const m = item.meta;
+        syncVideo = mainVideo;
+        syncFps = (m && m.fps) ? m.fps : 29.97;
+        syncFrameStep = (m && m.frame_step) ? m.frame_step : 4;
+        state.frame = 0;
+        mainVideo.currentTime = 0;
+        mainVideo.play();
+        dirty = true;
+      });
+
+      renderMeta(item.meta);
+
+      const thumbEl = filmstrip.children[idx];
+      if (thumbEl) thumbEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    function buildFilmstrip() {
+      filmstrip.innerHTML = '';
+      manifest.forEach((item, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumb';
+        const dist = item.meta ? fmtNum(item.meta.trajectory_length_m, 2) + 'm' : '';
+        const frames = item.meta ? item.meta.num_frames + 'f' : '';
+        const parts = item.name.match(/chunk(\d+)_traj(\d+)/);
+        const shortName = parts ? `C${parseInt(parts[1])} T${parseInt(parts[2])}` : item.name;
+        thumb.innerHTML = `
+          <video src="${item.video}" muted loop playsinline preload="metadata" crossorigin="anonymous"></video>
+          <div class="thumb-label">${shortName} <span class="dist">${dist}</span> ${frames}</div>
+        `;
+        thumb.addEventListener('click', () => selectTrajectory(idx));
+        thumb.addEventListener('mouseenter', () => { const v = thumb.querySelector('video'); if (v) v.play(); });
+        thumb.addEventListener('mouseleave', () => { const v = thumb.querySelector('video'); if (v) v.pause(); });
+        filmstrip.appendChild(thumb);
+      });
+    }
+
+    fetch('explorer_manifest.json').then(r => r.json()).then(data => {
+      manifest = data;
+      headerStats.textContent = `${manifest.length} trajectories`;
+      buildFilmstrip();
+      if (manifest.length > 0) selectTrajectory(0);
+    });
+  </script>
+</body>
+</html>
