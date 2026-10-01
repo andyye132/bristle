@@ -3,185 +3,209 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bristle - Trajectory Explorer</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; }
-
-    header { background: #161616; border-bottom: 1px solid #2a2a2a; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
-    header h1 { font-size: 1.3rem; font-weight: 600; }
-    header h1 span { color: #666; font-weight: 400; font-size: 0.9rem; margin-left: 8px; }
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .header-stats { font-size: 0.8rem; color: #666; }
-    .back-link { font-size: 0.8rem; color: #6b8afd; text-decoration: none; padding: 4px 10px; border: 1px solid #333; border-radius: 4px; }
-    .back-link:hover { border-color: #6b8afd; }
-
-    .filmstrip { background: #111; border-bottom: 1px solid #2a2a2a; padding: 12px 16px; overflow-x: auto; white-space: nowrap; display: flex; gap: 8px; }
-    .filmstrip::-webkit-scrollbar { height: 6px; }
-    .filmstrip::-webkit-scrollbar-track { background: #111; }
-    .filmstrip::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-
-    .thumb { flex-shrink: 0; width: 160px; border-radius: 6px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color 0.15s, transform 0.15s; background: #1a1a1a; }
-    .thumb:hover { border-color: #444; transform: translateY(-2px); }
-    .thumb.active { border-color: #6b8afd; }
-    .thumb video { width: 100%; height: 90px; object-fit: cover; display: block; pointer-events: none; background: #000; }
-    .thumb .thumb-label { padding: 4px 6px; font-size: 0.65rem; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .thumb .thumb-label .dist { color: #6b8afd; }
-
-    .main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 180px); }
-
-    .pane { position: relative; background: #0a0a0a; overflow: hidden; }
-    .pane-label { position: absolute; top: 10px; left: 12px; background: rgba(0,0,0,0.75); color: #fff; font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 4px; z-index: 10; letter-spacing: 0.5px; text-transform: uppercase; }
-
-    #video-pane video { width: 100%; height: 100%; object-fit: contain; background: #000; }
-    #viewer-pane canvas { width: 100%; height: 100%; display: block; touch-action: none; }
-
-    .controls-bar { position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; gap: 10px; align-items: center; z-index: 10; }
-    .controls-bar label { font-size: 0.7rem; color: #aaa; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,0.6); padding: 3px 8px; border-radius: 4px; }
-    .controls-bar input[type="checkbox"] { accent-color: #6b8afd; }
-    .controls-bar input[type="range"] { width: 60px; accent-color: #6b8afd; }
-
-    .meta-bar { background: #161616; border-top: 1px solid #2a2a2a; padding: 14px 24px; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
-    .meta-card { background: #1e1e1e; border-radius: 6px; padding: 10px 14px; min-width: 120px; }
-    .meta-card .label { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
-    .meta-card .value { font-size: 0.95rem; font-weight: 500; color: #ddd; }
-    .meta-card .value.highlight { color: #6b8afd; }
-
-    #loading-3d { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #666; font-size: 0.85rem; z-index: 5; }
-
-    @media (max-width: 800px) {
-      .main { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
-      .filmstrip { gap: 6px; }
-      .thumb { width: 120px; }
-      .thumb video { height: 68px; }
-    }
-  </style>
+  <title>Bristle — Trajectory Explorer</title>
+  <meta name="description" content="Extracted navigation trajectories played beside their 3D reconstruction: camera path, depth point clouds, goal and floor point.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script>if (window.self !== window.top) document.documentElement.classList.add('embed');</script>
 </head>
 <body>
-  <header>
-    <h1>Bristle<span>Trajectory Explorer</span></h1>
-    <div class="header-right">
-      <div class="header-stats" id="header-stats"></div>
-      <a href="index.html" class="back-link">Back to Hub</a>
-    </div>
-  </header>
 
-  <div class="filmstrip" id="filmstrip"></div>
+<header class="masthead">
+  <h1><a href="./">Bristle</a></h1>
+  <p>real-world navigation trajectories from house tour videos</p>
+</header>
+<nav class="bar">
+  <ul>
+    <li><a href="./">overview</a></li>
+    <li><a class="here" href="explorer.html">explorer</a></li>
+    <li><a href="gallery.html">gallery</a></li>
+    <li><a href="compare.html">vggt vs megasam</a></li>
+    <li><a href="https://andyye.bio/cs/research/robotics/bristle">write-up</a></li>
+  </ul>
+</nav>
 
-  <div class="main">
-    <div class="pane" id="viewer-pane">
-      <span class="pane-label">3D Trajectory</span>
-      <canvas id="megaview"></canvas>
-      <div id="loading-3d">Select a trajectory</div>
-      <div class="controls-bar">
-        <label><input type="checkbox" id="cb-frusta" checked> Frusta</label>
-        <label><input type="checkbox" id="cb-points"> Points</label>
-        <label>Size <input type="range" id="sl-frustum" min="5" max="80" value="25"></label>
+<main class="wide">
+  <div class="pagehead">
+    <h2>trajectory explorer</h2>
+    <p class="mono" id="count"></p>
+  </div>
+  <p class="lede">Every clip here was extracted from one eight-minute house walkthrough. Pick one: the video plays beside its reconstruction, and the camera in the 3d view follows the video. The dot in the video is the floor point, the spot the camera is walking toward.</p>
+
+  <div class="strip" id="filmstrip"></div>
+
+  <div class="stage">
+    <div>
+      <div class="frame view">
+        <canvas id="megaview"></canvas>
+        <p class="status" id="status">pick a trajectory</p>
+      </div>
+      <div class="ctl">
+        <label><input type="checkbox" id="cb-frusta" checked> cameras</label>
+        <label><input type="checkbox" id="cb-points"> accumulate points</label>
+        <label>camera size <input type="range" id="sl-frustum" min="5" max="80" value="25"></label>
+        <span class="btns">
+          <button type="button" id="zoom-out" title="zoom out" aria-label="zoom out">&minus;</button>
+          <button type="button" id="zoom-in" title="zoom in" aria-label="zoom in">+</button>
+          <button type="button" id="reset-view">reset view</button>
+        </span>
+      </div>
+      <div class="legend">
+        <span><i style="background:#f00"></i>camera now</span>
+        <span><i style="background:linear-gradient(90deg,#66c,#f00)"></i>keyframes, first &rarr; last</span>
+        <span><i style="background:#808080"></i>path</span>
+        <span><i class="dot" style="background:#00ff4d"></i>goal</span>
+        <span><i class="dot" style="background:#ff4d00"></i>floor point</span>
       </div>
     </div>
-    <div class="pane" id="video-pane">
-      <span class="pane-label">Video</span>
-      <video id="main-video" controls autoplay loop muted playsinline></video>
+    <div>
+      <div class="frame"><video id="main-video" controls autoplay loop muted playsinline crossorigin="anonymous"></video></div>
+      <p class="cap" id="clip-name"></p>
+      <dl class="meta" id="meta"></dl>
     </div>
   </div>
+  <p class="cap">drag to orbit · pinch or &#8984;-scroll to zoom · &larr; &rarr; to change clip</p>
+</main>
 
-  <div class="meta-bar" id="meta-bar"></div>
+<footer><a href="https://andyye.bio/site">andy ye</a> · uw raivn · ai2</footer>
 
-  <script src="viewer.js"></script>
-  <script>
-    let manifest = [];
-    let activeIdx = -1;
-    const filmstrip = document.getElementById('filmstrip');
-    const mainVideo = document.getElementById('main-video');
-    const metaBar = document.getElementById('meta-bar');
-    const headerStats = document.getElementById('header-stats');
-    const loadingEl = document.getElementById('loading-3d');
+<script src="viewer.js?v=2"></script>
+<script>
+  // First clip shown when the URL names none.
+  const START = 'OzU0q9AnOZ0-001_chunk003_traj001';
 
-    document.getElementById('cb-frusta').addEventListener('change', function() { state.show_all_frusta = this.checked; dirty = true; });
-    document.getElementById('cb-points').addEventListener('change', function() { state.show_all_points = this.checked; dirty = true; });
-    document.getElementById('sl-frustum').addEventListener('input', function() { state.frustum_size = this.value / 100; dirty = true; });
+  const embedded = document.documentElement.classList.contains('embed');
+  const filmstrip = document.getElementById('filmstrip');
+  const mainVideo = document.getElementById('main-video');
+  const metaEl = document.getElementById('meta');
+  const nameEl = document.getElementById('clip-name');
+  const statusEl = document.getElementById('status');
+  let manifest = [];
+  let activeIdx = -1;
 
-    function fmtNum(n, d=2) { return n != null ? Number(n).toFixed(d) : '-'; }
+  viewerBackground = rgba(getComputedStyle(document.documentElement).getPropertyValue('--view').trim());
 
-    function renderMeta(m) {
-      if (!m) { metaBar.innerHTML = ''; return; }
-      const items = [
-        ['Path Length', fmtNum(m.trajectory_length_m, 3) + ' m', true],
-        ['Displacement', fmtNum(m.displacement_m, 3) + ' m', false],
-        ['Horiz Dist', fmtNum(m.horizontal_distance_m, 3) + ' m', false],
-        ['Vert Dist', fmtNum(m.vertical_distance_m, 3) + ' m', false],
-        ['Duration', fmtNum(m.duration_s, 1) + ' s', false],
-        ['Frames', m.num_frames, false],
-        ['Avg Speed', fmtNum(m.mean_speed_mps, 3) + ' m/s', true],
-        ['Max Speed', fmtNum(m.max_speed_mps, 3) + ' m/s', false],
-        ['Speed CV', fmtNum(m.speed_cv, 3), false],
-        ['Med. Depth', fmtNum(m.median_depth_m, 2) + ' m', false],
-        ['Frame Step', m.frame_step, false],
-        ['Source', m.source_clip || '-', false],
-      ];
-      metaBar.innerHTML = items.map(([label, val, hl]) =>
-        `<div class="meta-card"><div class="label">${label}</div><div class="value${hl ? ' highlight' : ''}">${val}</div></div>`
-      ).join('');
+  document.getElementById('cb-frusta').addEventListener('change', function() { state.show_all_frusta = this.checked; dirty = true; });
+  document.getElementById('cb-points').addEventListener('change', function() { state.show_all_points = this.checked; dirty = true; });
+  document.getElementById('sl-frustum').addEventListener('input', function() { state.frustum_size = this.value / 100; dirty = true; });
+  document.getElementById('zoom-in').addEventListener('click', () => zoomView(0.8));
+  document.getElementById('zoom-out').addEventListener('click', () => zoomView(1.25));
+  document.getElementById('reset-view').addEventListener('click', resetView);
+
+  function fmtNum(n, d = 2) { return n != null ? Number(n).toFixed(d) : '–'; }
+  function setStatus(text) { statusEl.textContent = text; }
+
+  function renderMeta(m) {
+    if (!m) { metaEl.innerHTML = ''; return; }
+    const rows = [
+      ['path', fmtNum(m.trajectory_length_m) + ' m'],
+      ['displacement', fmtNum(m.displacement_m) + ' m'],
+      ['horizontal', fmtNum(m.horizontal_distance_m) + ' m'],
+      ['vertical', fmtNum(m.vertical_distance_m) + ' m'],
+      ['duration', fmtNum(m.duration_s, 1) + ' s'],
+      ['keyframes', m.num_frames],
+      ['avg speed', fmtNum(m.mean_speed_mps) + ' m/s'],
+      ['max speed', fmtNum(m.max_speed_mps) + ' m/s'],
+      ['speed cv', fmtNum(m.speed_cv)],
+      ['median depth', fmtNum(m.median_depth_m) + ' m'],
+      ['frame step', m.frame_step],
+      ['video fps', m.fps],
+    ];
+    metaEl.innerHTML = rows.map(([label, val]) => `<div><dt>${label}</dt><dd>${val}</dd></div>`).join('');
+  }
+
+  async function selectTrajectory(idx) {
+    if (idx === activeIdx || !manifest[idx]) return;
+    activeIdx = idx;
+    const item = manifest[idx];
+
+    [...filmstrip.children].forEach((t, i) => t.classList.toggle('active', i === idx));
+    // scroll the strip itself; scrollIntoView would also drag the host page around when embedded
+    const thumb = filmstrip.children[idx];
+    filmstrip.scrollTo({ left: thumb.offsetLeft - filmstrip.offsetLeft - (filmstrip.clientWidth - thumb.offsetWidth) / 2, behavior: 'smooth' });
+
+    nameEl.textContent = item.name;
+    renderMeta(item.meta);
+    if (!embedded) history.replaceState(null, '', '#' + item.name);
+
+    syncVideo = null;
+    mainVideo.src = item.video;
+    mainVideo.play().catch(() => {});
+
+    if (!gl) { setStatus('webgl2 is not available in this browser'); return; }
+    setStatus('loading 3d…');
+    try {
+      const loaded = await loadScene(item.packed, p => { if (idx === activeIdx) setStatus(`loading 3d… ${Math.round(p * 100)}%`); });
+      if (!loaded) return;
+    } catch (err) {
+      console.error(err);
+      if (idx === activeIdx) setStatus('couldn’t load the 3d scene');
+      return;
     }
+    if (item.goal_position) data.goal_position = item.goal_position;
+    if (item.floor_point) data.floor_point = item.floor_point;
+    const m = item.meta;
+    syncFps = (m && m.fps) ? m.fps : 29.97;
+    syncFrameStep = (m && m.frame_step) ? m.frame_step : 4;
+    syncVideo = mainVideo;
+    mainVideo.currentTime = 0;
+    mainVideo.play().catch(() => {});
+    setStatus('');
+  }
 
-    function selectTrajectory(idx) {
-      if (idx === activeIdx) return;
-      activeIdx = idx;
-      const item = manifest[idx];
-
-      document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
-
-      mainVideo.src = item.video;
-      mainVideo.play();
-
-      loadingEl.textContent = 'Loading 3D...';
-      loadingEl.style.display = 'block';
-      loadScene(item.packed).then(() => {
-        loadingEl.style.display = 'none';
-        if (item.goal_position) data.goal_position = item.goal_position;
-        if (item.floor_point) data.floor_point = item.floor_point;
-        const m = item.meta;
-        syncVideo = mainVideo;
-        syncFps = (m && m.fps) ? m.fps : 29.97;
-        syncFrameStep = (m && m.frame_step) ? m.frame_step : 4;
-        state.frame = 0;
-        mainVideo.currentTime = 0;
-        mainVideo.play();
-        dirty = true;
+  function buildFilmstrip() {
+    filmstrip.innerHTML = '';
+    // thumbnails only fetch their first frame once they scroll near the visible part of the strip
+    const lazy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.preload = 'metadata';
+        e.target.src = e.target.dataset.src;
+        lazy.unobserve(e.target);
       });
+    }, { root: filmstrip, rootMargin: '0px 400px' });
 
-      renderMeta(item.meta);
-
-      const thumbEl = filmstrip.children[idx];
-      if (thumbEl) thumbEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
-
-    function buildFilmstrip() {
-      filmstrip.innerHTML = '';
-      manifest.forEach((item, idx) => {
-        const thumb = document.createElement('div');
-        thumb.className = 'thumb';
-        const dist = item.meta ? fmtNum(item.meta.trajectory_length_m, 2) + 'm' : '';
-        const frames = item.meta ? item.meta.num_frames + 'f' : '';
-        const parts = item.name.match(/chunk(\d+)_traj(\d+)/);
-        const shortName = parts ? `C${parseInt(parts[1])} T${parseInt(parts[2])}` : item.name;
-        thumb.innerHTML = `
-          <video src="${item.video}" muted loop playsinline preload="metadata" crossorigin="anonymous"></video>
-          <div class="thumb-label">${shortName} <span class="dist">${dist}</span> ${frames}</div>
-        `;
-        thumb.addEventListener('click', () => selectTrajectory(idx));
-        thumb.addEventListener('mouseenter', () => { const v = thumb.querySelector('video'); if (v) v.play(); });
-        thumb.addEventListener('mouseleave', () => { const v = thumb.querySelector('video'); if (v) v.pause(); });
-        filmstrip.appendChild(thumb);
-      });
-    }
-
-    fetch('explorer_manifest.json').then(r => r.json()).then(data => {
-      manifest = data;
-      headerStats.textContent = `${manifest.length} trajectories`;
-      buildFilmstrip();
-      if (manifest.length > 0) selectTrajectory(0);
+    manifest.forEach((item, idx) => {
+      const thumb = document.createElement('button');
+      thumb.type = 'button';
+      thumb.className = 'thumb';
+      thumb.title = item.name;
+      const m = item.meta;
+      const summary = m ? `${fmtNum(m.trajectory_length_m)} m · ${fmtNum(m.duration_s, 1)} s` : '';
+      thumb.innerHTML = `
+        <video data-src="${item.video}#t=0.1" muted loop playsinline preload="none"></video>
+        <span><b>${String(idx + 1).padStart(2, '0')}</b>${summary}</span>
+      `;
+      const video = thumb.querySelector('video');
+      thumb.addEventListener('click', () => selectTrajectory(idx));
+      thumb.addEventListener('mouseenter', () => { if (video.src) video.play().catch(() => {}); });
+      thumb.addEventListener('mouseleave', () => video.pause());
+      filmstrip.appendChild(thumb);
+      lazy.observe(video);
     });
-  </script>
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|SELECT|TEXTAREA|VIDEO)$/.test(e.target.tagName)) return;
+    if (e.key === 'ArrowLeft') selectTrajectory(activeIdx - 1);
+    if (e.key === 'ArrowRight') selectTrajectory(activeIdx + 1);
+  });
+
+  // tell the embedding page how tall the content is so it can size the iframe to fit
+  if (embedded) {
+    new ResizeObserver(() => parent.postMessage({ bristleHeight: Math.ceil(document.body.offsetHeight) }, '*')).observe(document.body);
+  }
+
+  fetch('explorer_manifest.json').then(r => r.json()).then(items => {
+    manifest = items;
+    document.getElementById('count').textContent = `${manifest.length} trajectories`;
+    buildFilmstrip();
+    const wanted = decodeURIComponent(location.hash.slice(1)) || START;
+    selectTrajectory(Math.max(0, manifest.findIndex(item => item.name === wanted)));
+  }).catch(err => {
+    console.error(err);
+    setStatus('couldn’t load explorer_manifest.json');
+  });
+</script>
 </body>
 </html>

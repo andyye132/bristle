@@ -159,11 +159,15 @@ function cameraMatrix(camera, pose) {
   var d = 1 / (cameraInternal.far - cameraInternal.near);
   var a = (cameraInternal.near + cameraInternal.far) * d;
   var b = -2 * (cameraInternal.near * cameraInternal.far) * d;
-  var w = camera.zoom;
-  var h = camera.zoom * cameraInternal.aspect_ratio;
+  // zoom is the field of view across the canvas's shorter side, so a wide canvas shows more rather than cropping top and bottom
+  var fit = Math.max(1, cameraInternal.aspect_ratio);
+  var w = camera.zoom / fit;
+  var h = camera.zoom * cameraInternal.aspect_ratio / fit;
   var px = cameraInternal.xfrac - 1;
   var perspective = [w, 0, px, 0, 0, -h, 0, 0, 0, 0, a, b, 0, 0, 1, 0];
-  const follow_position = matT([-pose[0][3], -pose[1][3], -pose[2][3]]);
+  // orbit around the middle of the camera path unless following the current frame
+  const anchor = (!camera.follow && data.center) ? data.center : [pose[0][3], pose[1][3], pose[2][3]];
+  const follow_position = matT([-anchor[0], -anchor[1], -anchor[2]]);
   let follow_rotation;
   if (camera.follow_rotation) {
     follow_rotation = [
@@ -251,8 +255,10 @@ function initBuffer(b) {
 }
 function initBuffers(bufs) { for (const b in bufs) initBuffer(bufs[b]); }
 
-let remaining_to_load = 0, total_to_load = 0, dirty = true;
-function updateLoading() { if (remaining_to_load <= 0) { const el = document.getElementById('loading-3d') || document.getElementById('loading'); if (el) el.style.display = 'none'; } }
+let dirty = true;
+
+// Colour of the 3D viewport; the page can override it before the first draw.
+let viewerBackground = [0.95, 0.95, 0.95];
 
 function buildPathBuffer(poses) {
   const vb = gl.createBuffer();
@@ -266,52 +272,99 @@ function buildPathBuffer(poses) {
 
 function pad5(i) { return i.toString().padStart(5, '0'); }
 
-async function loadScene(packedurl) {
-  const loadEl = document.getElementById('loading-3d') || document.getElementById('loading');
-  if (loadEl) loadEl.style.display = 'block';
-  data = {};
-  resetState(state, parameterSpec.state);
+const sceneLoad = { id: 0, abort: null };
+
+function freeScene(d) {
+  if (!d || !d.poses) return;
+  for (const t of [...d.rgb, ...d.depth, ...d.video_rgb, d.live]) if (t) gl.deleteTexture(t);
+  gl.deleteBuffer(d.path.vb);
+  if (d._endpointBuf) gl.deleteBuffer(d._endpointBuf);
+}
+
+// Resolves true once the scene is ready to draw, false if a newer loadScene() call replaced it.
+// View settings (state) survive the switch; only the orbit camera and the frame are reset.
+async function loadScene(packedurl, onProgress) {
+  const id = ++sceneLoad.id;
+  if (sceneLoad.abort) sceneLoad.abort.abort();
+  sceneLoad.abort = new AbortController();
+  freeScene(data); data = false; dirty = true;
   resetState(camera, parameterSpec.camera);
-  const packed_data = await fetchPacked(packedurl);
-  data = JSON.parse(await packed_data['data.json'].text());
-  data.rgb = []; data.depth = []; data.depth_scale = 20;
-  data.path = buildPathBuffer(data.poses);
-  for (let i = 0; i < data.poses.length; i++) {
-    data.rgb[i] = loadTexture(packed_data[`rgb_${pad5(i)}.png`]);
-    data.depth[i] = loadDepth(packed_data[`depthrgb_${pad5(i)}.png`]);
+  state.frame = 0;
+  let d, images;
+  try {
+    const packed = await fetchPacked(packedurl, onProgress, sceneLoad.abort.signal);
+    d = JSON.parse(await packed['data.json'].text());
+    // The trajectory NPZs carry no images, so the converter packs a blank RGB frame per keyframe
+    // (a ~1 KB PNG). Skip those; colour then comes from the synced video (captureVideoFrame).
+    images = await Promise.all(d.poses.flatMap((_, i) => {
+      const rgb = packed[`rgb_${pad5(i)}.png`];
+      return [rgb && rgb.size > 4096 ? decodeImage(rgb) : null, decodeImage(packed[`depthrgb_${pad5(i)}.png`])];
+    }));
+  } catch (e) {
+    if (id !== sceneLoad.id) return false;
+    throw e;
   }
-  const infoEl = document.getElementById('info');
-  if (infoEl) infoEl.textContent = `Loaded: ${data.poses.length} frames`;
+  if (id !== sceneLoad.id) return false;
+  d.depth_scale = 20;
+  d.rgb = []; d.depth = []; d.video_rgb = []; d.live = null;
+  for (let i = 0; i < d.poses.length; i++) {
+    if (images[2*i]) d.rgb[i] = makeTexture(images[2*i], gl.LINEAR);
+    d.depth[i] = makeTexture(images[2*i + 1], gl.NEAREST);
+  }
+  d.path = buildPathBuffer(d.poses);
+  d.center = [0, 1, 2].map(k => d.poses.reduce((sum, p) => sum + p[k][3], 0) / d.poses.length);
+  data = d; dirty = true;
+  return true;
 }
 
-function loadTexture(blob) {
-  const t = gl.createTexture(); const url = URL.createObjectURL(blob);
-  const image = new Image();
-  image.onload = function() {
-    gl.bindTexture(gl.TEXTURE_2D, t);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    t.ready = true; URL.revokeObjectURL(url); dirty = true; remaining_to_load--; updateLoading();
-  };
-  total_to_load++; remaining_to_load++; image.src = url; return t;
+function decodeImage(blob) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => { URL.revokeObjectURL(url); resolve(image); };
+    image.onerror = () => { URL.revokeObjectURL(url); reject(new Error('undecodable image in packed file')); };
+    image.src = url;
+  });
 }
 
-function loadDepth(blob) {
-  const t = gl.createTexture(); const url = URL.createObjectURL(blob);
-  const image = new Image();
-  image.onload = function() {
-    gl.bindTexture(gl.TEXTURE_2D, t);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-    t.ready = true; URL.revokeObjectURL(url); dirty = true; remaining_to_load--; updateLoading();
-  };
-  total_to_load++; remaining_to_load++; updateLoading(); image.src = url; return t;
+function uploadTexture(t, source) {
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+}
+
+function makeTexture(source, filter) {
+  const t = gl.createTexture();
+  uploadTexture(t, source);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter);
+  t.ready = true;
+  return t;
+}
+
+// Copy what the synced <video> is showing into keyframe i's colour. The current frame always gets
+// it (data.live); every_nth frames are also kept so the accumulated cloud fills in as the clip plays.
+let videoUnreadable = false;
+function captureVideoFrame(i) {
+  const v = syncVideo;
+  if (videoUnreadable || v.seeking || v.readyState < 2) return false;
+  try {
+    if (data.live) uploadTexture(data.live, v); else data.live = makeTexture(v, gl.LINEAR);
+    data.live.frame = i;
+    if (i % state.every_nth === 0 && !data.video_rgb[i]) data.video_rgb[i] = makeTexture(v, gl.LINEAR);
+  } catch (e) {
+    // a video served without CORS headers can't be read into a texture
+    videoUnreadable = true; console.log('Video frames unavailable for colour:', e.message);
+    return false;
+  }
+  return true;
+}
+
+function colorTexture(i) {
+  if (data.rgb[i]) return data.rgb[i];
+  if (data.live && data.live.frame === i) return data.live;
+  return data.video_rgb[i];
 }
 
 function prepareDrawFrustum(size_factor) {
@@ -357,7 +410,7 @@ function prepareDrawImage(camera_matrix) {
 }
 
 function drawImage(frame, tex, alpha) {
-  if (!tex.ready) return;
+  if (!tex || !tex.ready) return;
   const p = programs['screen'];
   gl.uniformMatrix4fv(p.uniform.pose, true, poseMatrix(data, frame));
   gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -377,10 +430,11 @@ function prepareDrawPoints(camera_matrix, stride, size, size_factor) {
 }
 
 function drawPoints(i, stride, alpha) {
-  if (!data.rgb[i].ready || !data.depth[i].ready) return;
+  const rgb = colorTexture(i);
+  if (!rgb || !data.depth[i].ready) return;
   const p = programs['cloud'];
   gl.uniform1f(p.uniform.alpha, alpha);
-  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, data.rgb[i]);
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, rgb);
   gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, data.depth[i]);
   gl.uniformMatrix4fv(p.uniform.pose, true, poseMatrix(data, i));
   const w = data.width, h = data.height;
@@ -400,7 +454,7 @@ function* other_frames() {
 }
 
 function draw(state) {
-  gl.clearColor(0.95, 0.95, 0.95, 1.0);
+  gl.clearColor(viewerBackground[0], viewerBackground[1], viewerBackground[2], 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   if (!data || !data.poses) return;
   const size_factor = state.size_factor;
@@ -438,7 +492,7 @@ function draw(state) {
 
   // Draw images on frustums
   prepareDrawImage(camera_matrix);
-  drawImage(state.frame, data.rgb[state.frame], 1.0);
+  drawImage(state.frame, colorTexture(state.frame), 1.0);
 }
 
 function drawEndpointMarker(camera_matrix, pos, color, size) {
@@ -476,11 +530,21 @@ const parameterSpec = {
   },
 };
 
-async function fetchPacked(url) {
+async function fetchPacked(url, onProgress, signal) {
   const results = {};
-  const response = await fetch(url);
-  if (response.status !== 200) { console.log('Error:', response.status); return results; }
-  const blob = await response.blob();
+  const response = await fetch(url, {signal});
+  if (response.status !== 200) throw new Error(`HTTP ${response.status} fetching packed scene`);
+  const total = Number(response.headers.get('Content-Length'));
+  let blob;
+  if (onProgress && total && response.body) {
+    const reader = response.body.getReader(); const chunks = []; let received = 0;
+    for (;;) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      chunks.push(value); received += value.length; onProgress(Math.min(1, received / total));
+    }
+    blob = new Blob(chunks);
+  } else { blob = await response.blob(); }
   const prefix_size = new DataView(await blob.slice(0, 8).arrayBuffer()).getUint32(0, true);
   const json = JSON.parse(await blob.slice(8, prefix_size).text());
   for (const [key, [start, end, content_type]] of Object.entries(json)) {
@@ -503,21 +567,21 @@ let syncFps = 29.97;
 
 function tick() {
   window.requestAnimationFrame(tick);
-  if (remaining_to_load > 0) return;
 
   // Drive 3D frame from video currentTime
   if (syncVideo && data && data.poses && data.poses.length) {
     const t = syncVideo.currentTime;
     const videoFrame = t * syncFps;
     // Each 3D keyframe = frame_step video frames
-    const newFrame = Math.min(
+    const newFrame = Math.max(0, Math.min(
       Math.floor(videoFrame / syncFrameStep),
       data.poses.length - 1
-    );
+    ));
     if (newFrame !== state.frame) {
-      state.frame = Math.max(0, newFrame);
+      state.frame = newFrame;
       dirty = true;
     }
+    if ((!data.live || data.live.frame !== newFrame) && captureVideoFrame(newFrame)) dirty = true;
   }
 
   if (dirty) { dirty = false; state.camera_frame = camera.follow ? state.frame : 0; draw(state); }
@@ -530,17 +594,20 @@ function addHandlers(canvas) {
   canvas.addEventListener("pointermove", (e) => { if (dragging) { camera.rx=rx+(e.clientY-oy)*speed; camera.ry=ry-(e.clientX-ox)*speed; dirty=true; } });
   canvas.addEventListener("pointerup", () => dragging=false);
   canvas.addEventListener("pointercancel", () => dragging=false);
-  canvas.addEventListener('wheel', (e) => { camera.distance = Math.max(0.1, Math.min(10, camera.distance - 0.001 * e.wheelDeltaY)); dirty=true; e.preventDefault(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey) return;
-    if (e.key === ' ') { state.playing = !state.playing; dirty=true; e.preventDefault(); }
-    if (e.key === 'ArrowLeft') { state.playing=false; state.frame=(state.frame-1+data.poses.length)%data.poses.length; dirty=true; e.preventDefault(); }
-    if (e.key === 'ArrowRight') { state.playing=false; state.frame=(state.frame+1)%data.poses.length; dirty=true; e.preventDefault(); }
-  });
+  // A plain scroll over the canvas scrolls the page; pinch (which arrives as ctrl+wheel) or cmd/ctrl+scroll zooms.
+  canvas.addEventListener('wheel', (e) => {
+    if (!e.ctrlKey && !e.metaKey) return;
+    zoomView(Math.exp(0.01 * Math.max(-30, Math.min(30, e.deltaY))));
+    e.preventDefault();
+  }, {passive: false});
 }
 
+function zoomView(factor) { camera.distance = Math.max(0.1, Math.min(10, camera.distance * factor)); dirty = true; }
+function resetView() { resetState(camera, parameterSpec.camera); dirty = true; }
+
 function resize() {
-  const dp = window.devicePixelRatio;
+  if (!canvas.clientWidth || !canvas.clientHeight) return;
+  const dp = Math.min(window.devicePixelRatio || 1, 2);
   state.size_factor = dp;
   canvas.width = canvas.clientWidth * dp;
   canvas.height = canvas.clientHeight * dp;
@@ -549,10 +616,10 @@ function resize() {
   dirty = true;
 }
 
-async function init() {
+function init() {
   canvas = document.getElementById('megaview');
   gl = canvas.getContext('webgl2', {antialias: false, alpha: false});
-  if (!gl) { const el = document.getElementById('loading-3d'); if (el) el.textContent = 'WebGL2 not supported'; return; }
+  if (!gl) return;
   resize();
   gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
   gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -561,9 +628,10 @@ async function init() {
   initPrograms(v, f, programs);
   initBuffers(buffers);
   addHandlers(canvas);
-  window.addEventListener('resize', resize);
+  new ResizeObserver(resize).observe(canvas);
   window.requestAnimationFrame(tick);
-
 }
 
-window.addEventListener('load', init);
+// Runs as soon as the script does (it is included after the canvas), so `gl` exists before the page
+// asks for a scene; `gl` stays null when WebGL2 is unavailable.
+init();

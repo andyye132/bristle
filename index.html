@@ -4,54 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bristle</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; min-height: 100vh; display: flex; flex-direction: column; }
-
-        header { background: #161616; border-bottom: 1px solid #2a2a2a; padding: 32px 24px; text-align: center; }
-        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
-        .subtitle { color: #888; font-size: 1rem; max-width: 600px; margin: 0 auto; line-height: 1.5; }
-
-        .hub { max-width: 900px; margin: 48px auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-
-        .hub-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 28px 24px; cursor: pointer; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: inherit; display: block; }
-        .hub-card:hover { border-color: #6b8afd; transform: translateY(-3px); }
-        .hub-card h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
-        .hub-card p { font-size: 0.85rem; color: #888; line-height: 1.5; }
-        .hub-card .tag { display: inline-block; margin-top: 12px; font-size: 0.7rem; padding: 3px 10px; border-radius: 4px; background: #1a2a4a; color: #6b8afd; font-weight: 500; }
-        .hub-card .tag.new { background: #0a3622; color: #4ade80; }
-
-        footer { margin-top: auto; padding: 20px; text-align: center; font-size: 0.75rem; color: #444; border-top: 1px solid #1a1a1a; }
-        footer a { color: #666; text-decoration: none; }
-        footer a:hover { color: #888; }
-    </style>
+    <meta name="description" content="Extracting real-world navigation trajectories from house tour videos for embodied AI training data.">
+    <meta property="og:title" content="Bristle">
+    <meta property="og:description" content="Extracting real-world navigation trajectories from house tour videos for embodied AI training data.">
+    <meta property="og:url" content="https://andyye.bio/bristle/">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Bristle</h1>
-        <p class="subtitle">Extracting real-world navigation trajectories from house tour videos for embodied AI training data.</p>
-    </header>
 
-    <div class="hub">
-        <a href="explorer.html" class="hub-card">
-            <h2>3D Trajectory Explorer</h2>
-            <p>Interactive viewer with synced video playback, 3D camera frustums, depth point clouds, and per-trajectory metadata.</p>
-            <span class="tag new">New</span>
-        </a>
-        <a href="gallery.html" class="hub-card">
-            <h2>Video Gallery</h2>
-            <p>Browse all extracted trajectory videos with filtering, metadata overlays, and side-by-side comparison views.</p>
-            <span class="tag">Gallery</span>
-        </a>
-        <a href="compare.html" class="hub-card">
-            <h2>VGGT vs MegaSaM</h2>
-            <p>Side-by-side 3D trajectory comparisons between VGGT and MegaSaM reconstruction methods.</p>
-            <span class="tag">Comparison</span>
-        </a>
+<header class="masthead">
+    <h1><a href="./">Bristle</a></h1>
+    <p>real-world navigation trajectories from house tour videos</p>
+</header>
+<nav class="bar">
+    <ul>
+        <li><a class="here" href="./">overview</a></li>
+        <li><a href="explorer.html">explorer</a></li>
+        <li><a href="gallery.html">gallery</a></li>
+        <li><a href="compare.html">vggt vs megasam</a></li>
+        <li><a href="https://andyye.bio/cs/research/robotics/bristle">write-up</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2 class="title">Bristle: A Filtering Pipeline for Real Life Household CV Navigation</h2>
+    <p class="sub">Andy Ye · Allen Institute for AI (Ai2) · UW RAIVN · with Matt Wallingford</p>
+    <p class="links">
+        write-up: <a href="https://andyye.bio/cs/research/robotics/bristle">andyye.bio/cs/research/robotics/bristle</a><br>
+        data: <a href="https://huggingface.co/datasets/andyye132/bristle-trajectories" target="_blank">huggingface.co/datasets/andyye132/bristle-trajectories</a>
+    </p>
+
+    <div class="teaser">
+        <div class="frame"><video src="https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/ruXqunu4GP4-001_traj009.mp4" autoplay muted loop playsinline></video></div>
+        <div class="frame"><video src="https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/FCB9gqr-trY-001_traj004.mp4" autoplay muted loop playsinline></video></div>
+        <div class="frame"><video src="https://huggingface.co/datasets/andyye132/bristle-trajectories/resolve/main/videos/KiYcM_oE3eE-016_traj001.mp4" autoplay muted loop playsinline></video></div>
+    </div>
+    <p class="cap">three extracted trajectories</p>
+
+    <div class="prose" style="margin-top:1.4rem">
+        <p>Real-world robotic navigation models lean on simulated data because good, well-formatted real data is sparse. Bristle is an automated pipeline that turns real estate walkthrough videos into training data for embodied AI navigation: short clips of continuous camera motion, each with a camera trajectory, depth maps and a destination on the floor.</p>
     </div>
 
-    <footer>
-        <a href="https://andyye.bio">andyye.bio</a> &middot; UW RAIVN &middot; AI2
-    </footer>
+    <h3 class="sec">browse</h3>
+    <ul class="doors">
+        <li>
+            <a href="explorer.html">trajectory explorer</a>
+            <p>A clip beside its 3d reconstruction: camera path, depth point clouds, goal and floor point.</p>
+        </li>
+        <li>
+            <a href="gallery.html">gallery</a>
+            <p>Extracted clips with their path length, speed and depth numbers.</p>
+        </li>
+        <li>
+            <a href="compare.html">vggt vs megasam</a>
+            <p>The same clips reconstructed by both methods, side by side.</p>
+        </li>
+    </ul>
+
+    <h3 class="sec">pipeline</h3>
+    <ol class="pipeline">
+        <li><b>Segment.</b> PySceneDetect splits each house tour video from RealEstate10K into clips at scene cuts.</li>
+        <li><b>Reconstruct.</b> MegaSaM recovers metric depth maps and camera poses for each clip.</li>
+        <li><b>Find transitions.</b> Cuts and fades left inside a clip are detected, so no trajectory crosses one.</li>
+        <li><b>Extract trajectories.</b> A greedy search takes the farthest destination that stays in view and unoccluded for the whole path, then locates the floor point beneath it.</li>
+        <li><b>Filter.</b> QwenVL looks at each result and rejects drone shots, stairs, people and the like.</li>
+        <li><b>Measure.</b> Path length, displacement, speed and depth statistics are computed per trajectory.</li>
+    </ol>
+    <p class="mono">python · slurm · megasam · pyscenedetect · qwen-vl</p>
+</main>
+
+<footer><a href="https://andyye.bio/site">andy ye</a> · uw raivn · ai2</footer>
+
 </body>
 </html>

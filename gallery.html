@@ -3,457 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bristle - Trajectory Videos</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f0f0f;
-            color: #e0e0e0;
-            min-height: 100vh;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #1a1a1a;
-            border-bottom: 1px solid #333;
-            padding: 16px 24px;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        h1 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        h1 span { color: #888; font-weight: 400; }
-
-        .stats {
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        .grid {
-            max-width: 1400px;
-            margin: 24px auto;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .card {
-            background: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #2a2a2a;
-            transition: border-color 0.2s;
-            cursor: pointer;
-        }
-
-        .card:hover { border-color: #444; }
-
-        .card video {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            background: #000;
-            display: block;
-            pointer-events: none;
-        }
-
-        .card .info {
-            padding: 10px 12px;
-            font-size: 0.8rem;
-            color: #aaa;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card .info .name {
-            color: #ddd;
-            font-weight: 500;
-        }
-
-        .card .info .tags {
-            margin-top: 4px;
-            display: flex;
-            gap: 6px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-
-        .tag-staircase { background: #3d2b00; color: #f0b429; }
-        .tag-outdoor { background: #0a3622; color: #4ade80; }
-        .tag-trimmed { background: #2b1a3d; color: #c084fc; }
-
-        .empty {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 80px 20px;
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        .loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 80px 20px;
-            color: #666;
-        }
-
-        .loading .spinner {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border: 3px solid #333;
-            border-top-color: #6b8afd;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* Modal overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 200;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            max-width: 1100px;
-            width: 94vw;
-            max-height: 90vh;
-            overflow: auto;
-        }
-
-        .video-compare {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: #000;
-            border-radius: 12px 12px 0 0;
-            overflow: hidden;
-        }
-
-        .video-pane {
-            position: relative;
-        }
-
-        .video-pane video {
-            width: 100%;
-            display: block;
-            background: #000;
-        }
-
-        .video-pane .pane-label {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 4px;
-            z-index: 5;
-        }
-
-        .modal-body {
-            padding: 20px 24px;
-        }
-
-        .modal-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-            word-break: break-all;
-        }
-
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-        }
-
-        .meta-item {
-            background: #222;
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .meta-label {
-            font-size: 0.7rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .meta-value {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #e0e0e0;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: rgba(0,0,0,0.6);
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 210;
-        }
-
-        .modal-close:hover { background: rgba(0,0,0,0.8); }
-
-        @media (max-width: 700px) {
-            .video-compare { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 900px) {
-            .grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 560px) {
-            .grid { grid-template-columns: 1fr; padding: 0 12px; }
-            .header-content { padding: 0; }
-            .modal { width: 95vw; }
-        }
-    </style>
+    <title>Bristle — Gallery</title>
+    <meta name="description" content="Navigation trajectory clips extracted from house tour videos, with per-clip metadata.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Bristle <span>Trajectory Videos</span></h1>
-            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                <div class="stats" id="stats"></div>
-                <select id="filter" style="padding:6px 10px;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#ccc;font-size:0.85rem;">
-                    <option value="all">All videos</option>
+
+<header class="masthead">
+    <h1><a href="./">Bristle</a></h1>
+    <p>real-world navigation trajectories from house tour videos</p>
+</header>
+<nav class="bar">
+    <ul>
+        <li><a href="./">overview</a></li>
+        <li><a href="explorer.html">explorer</a></li>
+        <li><a class="here" href="gallery.html">gallery</a></li>
+        <li><a href="compare.html">vggt vs megasam</a></li>
+        <li><a href="https://andyye.bio/cs/research/robotics/bristle">write-up</a></li>
+    </ul>
+</nav>
+
+<main class="wide">
+    <div class="pagehead">
+        <h2>gallery</h2>
+        <p class="mono">
+            <span id="stats"></span>
+            <label>sort
+                <select id="sort">
+                    <option value="shuffled">shuffled</option>
+                    <option value="trajectory_length_m">longest path</option>
+                    <option value="duration_s">longest clip</option>
                 </select>
-                <a href="compare.html" style="padding:6px 14px;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#ccc;text-decoration:none;font-size:0.85rem;white-space:nowrap;">3D Comparison</a>
-                <a href="https://andyye.bio" style="padding:6px 14px;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#ccc;text-decoration:none;font-size:0.85rem;white-space:nowrap;">andyye.bio</a>
-            </div>
-        </div>
-    </header>
+            </label>
+        </p>
+    </div>
+    <p class="lede">Extracted trajectory clips that passed the visual filter. Click one for its numbers.</p>
 
     <div class="grid" id="grid">
-        <div class="loading">
-            <div class="spinner"></div>
-            <p style="margin-top: 12px;">Loading videos...</p>
-        </div>
+        <p class="note">loading clips…</p>
     </div>
+</main>
 
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal" style="position:relative;">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <div class="video-compare">
-                <div class="video-pane">
-                    <span class="pane-label">Processed</span>
-                    <video id="modal-video-processed" controls autoplay loop muted playsinline></video>
-                </div>
-                <div class="video-pane">
-                    <span class="pane-label">Original</span>
-                    <video id="modal-video-original" controls autoplay loop muted playsinline></video>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="modal-title" id="modal-title"></div>
-                <div class="meta-grid" id="modal-meta"></div>
-            </div>
+<dialog id="modal">
+    <div class="inner">
+        <div class="frame"><video id="modal-video" controls autoplay loop muted playsinline></video></div>
+        <div class="bar">
+            <h3 id="modal-title"></h3>
+            <button type="button" id="modal-close">close</button>
         </div>
+        <dl class="meta" id="modal-meta"></dl>
+        <p class="reason" id="modal-reason"></p>
     </div>
+</dialog>
 
-    <script>
-        const grid = document.getElementById('grid');
-        const stats = document.getElementById('stats');
-        const overlay = document.getElementById('modal-overlay');
-        const vidProcessed = document.getElementById('modal-video-processed');
-        const vidOriginal = document.getElementById('modal-video-original');
-        const modalTitle = document.getElementById('modal-title');
-        const modalMeta = document.getElementById('modal-meta');
-        let metadata = {};
+<footer><a href="https://andyye.bio/site">andy ye</a> · uw raivn · ai2</footer>
 
-        function seededShuffle(arr, seed) {
-            function rand() {
-                seed = (seed * 16807 + 0) % 2147483647;
-                return (seed - 1) / 2147483646;
-            }
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(rand() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
+<script>
+    const grid = document.getElementById('grid');
+    const stats = document.getElementById('stats');
+    const sortEl = document.getElementById('sort');
+    const modal = document.getElementById('modal');
+    const modalVideo = document.getElementById('modal-video');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMeta = document.getElementById('modal-meta');
+    const modalReason = document.getElementById('modal-reason');
+    const FLAGS = [['is_stairs', 'stairs'], ['is_outdoor', 'outdoor'], ['is_people', 'people'], ['is_water', 'water']];
+    let metadata = {};
+    let shuffled = [];
+
+    function fmtNum(n, d = 2) { return n != null ? Number(n).toFixed(d) : '–'; }
+
+    function seededShuffle(arr, seed) {
+        function rand() {
+            seed = (seed * 16807 + 0) % 2147483647;
+            return (seed - 1) / 2147483646;
         }
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(rand() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
 
-        function openModal(name, url, originalUrl) {
-            vidProcessed.src = url;
-            vidOriginal.src = originalUrl;
-            modalTitle.textContent = name;
-            const m = metadata[name];
-            if (m) {
-                const items = [
-                    ['Displacement', m.displacement_m + ' m'],
-                    ['Horiz. Disp.', m.displacement_horizontal_m + ' m'],
-                    ['Vert. Disp.', m.displacement_vertical_m + ' m'],
-                    ['Path Length', m.trajectory_length_m + ' m'],
-                    ['Duration', m.duration_s + ' s'],
-                    ['Frames', m.num_frames],
-                    ['Avg Speed', m.mean_speed_mps + ' m/s'],
-                    ['Median Depth', m.median_depth_m + ' m'],
-                    ['Outdoor', m.is_outdoor ? 'Yes' : 'No'],
-                    ['Stairs', m.is_stairs ? 'Yes' : 'No'],
-                    ['People', m.is_people ? 'Yes' : 'No'],
-                    ['Source Clip', m.source_clip],
-                ];
-                modalMeta.innerHTML = items.map(([label, val]) =>
-                    `<div class="meta-item"><div class="meta-label">${label}</div><div class="meta-value">${val}</div></div>`
-                ).join('');
+    function openModal(v) {
+        modalVideo.src = v.url;
+        modalTitle.textContent = v.name;
+        const m = metadata[v.name];
+        modalReason.textContent = '';
+        if (m) {
+            const rows = [
+                ['path', fmtNum(m.trajectory_length_m) + ' m'],
+                ['displacement', fmtNum(m.displacement_m) + ' m'],
+                ['horiz. displ.', fmtNum(m.displacement_horizontal_m) + ' m'],
+                ['vert. displ.', fmtNum(m.displacement_vertical_m) + ' m'],
+                ['duration', fmtNum(m.duration_s, 1) + ' s'],
+                ['keyframes', m.num_frames],
+                ['avg speed', fmtNum(m.mean_speed_mps) + ' m/s'],
+                ['median depth', fmtNum(m.median_depth_m) + ' m'],
+                ['outdoor', m.is_outdoor ? 'yes' : 'no'],
+                ['stairs', m.is_stairs ? 'yes' : 'no'],
+                ['people', m.is_people ? 'yes' : 'no'],
+            ];
+            modalMeta.innerHTML = rows.map(([label, val]) => `<div><dt>${label}</dt><dd>${val}</dd></div>`).join('');
+            if (m.reason) {
+                const who = document.createElement('span');
+                who.textContent = 'filter note (qwen-vl): ';
+                modalReason.append(who, m.reason);
+            }
+        } else {
+            modalMeta.innerHTML = '<div class="full"><dt>no metadata</dt><dd></dd></div>';
+        }
+        modal.showModal();
+    }
+
+    // fires for the close button, Escape, and backdrop clicks alike
+    modal.addEventListener('close', () => {
+        modalVideo.pause();
+        modalVideo.removeAttribute('src');
+        modalVideo.load();
+    });
+    modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+    document.getElementById('modal-close').addEventListener('click', () => modal.close());
+
+    // clips load when they come near the viewport and only play while on screen
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            const video = e.target;
+            if (e.isIntersecting) {
+                if (!video.src) video.src = video.dataset.src;
+                video.play().catch(() => {});
             } else {
-                modalMeta.innerHTML = '<div class="meta-item"><div class="meta-value" style="color:#888">No metadata</div></div>';
+                video.pause();
             }
-            overlay.classList.add('active');
-        }
+        });
+    }, { rootMargin: '200px' });
 
-        function closeModal() {
-            overlay.classList.remove('active');
-            vidProcessed.pause();
-            vidOriginal.pause();
-            vidProcessed.removeAttribute('src');
-            vidOriginal.removeAttribute('src');
-        }
+    function renderGrid(videos) {
+        observer.disconnect();
+        grid.innerHTML = '';
+        stats.textContent = `${videos.length} clips`;
 
-        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-        document.getElementById('modal-close').addEventListener('click', closeModal);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-        let allVideos = [];
-        const filterEl = document.getElementById('filter');
-
-        function isCompareClip(v) {
-            return v.url.includes('/compare/') && !v.url.includes('/compare_traj/');
-        }
-
-        function isCompareTraj(v) {
-            return v.url.includes('/compare_traj/');
-        }
-
-        function renderGrid(videos) {
-            grid.innerHTML = '';
-            stats.textContent = `${videos.length} videos`;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    const video = e.target;
-                    if (e.isIntersecting) {
-                        if (!video.src) video.src = video.dataset.src;
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-                });
-            }, { rootMargin: '200px' });
-
-            videos.forEach(v => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                const m = metadata[v.name];
-                const compare = isCompareClip(v);
-                const compareTraj = isCompareTraj(v);
-                let tagsHtml = '';
-                if (compareTraj) {
-                    const isVggt = v.name.includes('vggt');
-                    tagsHtml += isVggt
-                        ? '<span class="tag" style="background:#0a3622;color:#4ade80;">VGGT</span>'
-                        : '<span class="tag" style="background:#3d1a1a;color:#f87171;">MegaSaM</span>';
-                }
-                if (compare) tagsHtml += '<span class="tag" style="background:#1a2a4a;color:#6b8afd;">compare</span>';
-                if (m) {
-                    if (m.is_stairs) tagsHtml += '<span class="tag tag-staircase">stairs</span>';
-                    if (m.is_outdoor) tagsHtml += '<span class="tag tag-outdoor">outdoor</span>';
-                    if (m.is_people) tagsHtml += '<span class="tag" style="background:#2a1a4a;color:#a78bfa;">people</span>';
-                    if (m.is_water) tagsHtml += '<span class="tag" style="background:#1a2a3a;color:#67e8f9;">water</span>';
-                }
-                card.innerHTML = `
-                    <video data-src="${v.url}" muted loop playsinline preload="metadata"></video>
-                    <div class="info">
-                        <span class="name">${v.name}</span>
-                        ${m ? `<span style="color:#666;margin-left:6px">${m.displacement_m}m &middot; ${m.duration_s}s</span>` : ''}
-                        ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
-                    </div>
-                `;
-                card.addEventListener('click', () => openModal(v.name, v.url, v.original_url));
-                grid.appendChild(card);
-                observer.observe(card.querySelector('video'));
-            });
-
-            if (videos.length === 0) {
-                grid.innerHTML = '<div class="empty">No videos match this filter</div>';
-            }
-        }
-
-        filterEl.addEventListener('change', () => {
-            const f = filterEl.value;
-            if (f === 'compare') renderGrid(allVideos.filter(isCompareClip));
-            else if (f === 'compare_traj') renderGrid(allVideos.filter(isCompareTraj));
-            else if (f === 'trajectories') renderGrid(allVideos.filter(v => !isCompareClip(v) && !isCompareTraj(v)));
-            else renderGrid(allVideos);
+        videos.forEach(v => {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'card';
+            const m = metadata[v.name];
+            const tagsHtml = m ? FLAGS.filter(([key]) => m[key]).map(([, label]) => `<span class="tag">${label}</span>`).join('') : '';
+            card.innerHTML = `
+                <video data-src="${v.url}" muted loop playsinline preload="metadata"></video>
+                <span class="info mono">
+                    <b>${v.name}</b>
+                    ${m ? `<span>${fmtNum(m.trajectory_length_m)} m · ${fmtNum(m.duration_s, 1)} s</span>` : ''}
+                </span>
+                ${tagsHtml ? `<span class="tags">${tagsHtml}</span>` : ''}
+            `;
+            card.addEventListener('click', () => openModal(v));
+            grid.appendChild(card);
+            observer.observe(card.querySelector('video'));
         });
 
-        Promise.all([
-            fetch('videos.json').then(r => r.json()),
-            fetch('metadata.json').then(r => r.json()).catch(() => ({}))
-        ]).then(([videos, meta]) => {
-            metadata = meta;
-            let seed = localStorage.getItem('bristle-seed');
-            if (!seed) {
-                seed = Math.floor(Math.random() * 2147483646) + 1;
-                localStorage.setItem('bristle-seed', seed);
-            }
-            seededShuffle(videos, Number(seed));
-            allVideos = videos;
-            renderGrid(videos);
-        }).catch(err => {
-            grid.innerHTML = `<div class="empty">Failed to load videos.json<br><small>${err.message}</small></div>`;
-        });
-    </script>
+        if (videos.length === 0) {
+            grid.innerHTML = '<p class="note">no clips</p>';
+        }
+    }
+
+    sortEl.addEventListener('change', () => {
+        const key = sortEl.value;
+        if (key === 'shuffled') { renderGrid(shuffled); return; }
+        const value = v => (metadata[v.name] || {})[key] || 0;
+        renderGrid([...shuffled].sort((a, b) => value(b) - value(a)));
+    });
+
+    Promise.all([
+        fetch('videos.json').then(r => r.json()),
+        fetch('metadata.json').then(r => r.json()).catch(() => ({}))
+    ]).then(([videos, meta]) => {
+        metadata = meta;
+        let seed = localStorage.getItem('bristle-seed');
+        if (!seed) {
+            seed = Math.floor(Math.random() * 2147483646) + 1;
+            localStorage.setItem('bristle-seed', seed);
+        }
+        shuffled = seededShuffle(videos, Number(seed));
+        renderGrid(shuffled);
+    }).catch(err => {
+        grid.innerHTML = '<p class="note">couldn’t load videos.json</p>';
+        console.error(err);
+    });
+</script>
 </body>
 </html>
